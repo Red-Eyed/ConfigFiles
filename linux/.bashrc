@@ -1,10 +1,8 @@
-#!/usr/bin/env bash
-
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-source ~/.bashrc_work > /dev/null 2>&1
+source ~/.bashrc_work
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -73,12 +71,12 @@ xterm*|rxvt*)
     ;;
 esac
 alias sudo='sudo '
-alias date='date  +"%Y/%m/%d %H:%M" '
+# alias date='date  +"%Y/%m/%d %H:%M" '
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
+    alias ls-color='ls --color=auto'
     alias dir='dir --color=auto'
     alias vdir='vdir --color=auto'
 
@@ -88,9 +86,16 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # some more ls aliases
+if command -v ls-color > /dev/null 2>&1; then
+    alias ls='ls-color --time-style=long-iso -h'
+else
+    alias ls='ls --time-style=long-iso -h'
+fi
+
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias xclip='xclip -selection clipboard'
 alias getpwd='pwd | xclip'
 alias ip='ip -c'
 alias rsync='rsync --info=progress2 '
@@ -137,7 +142,19 @@ export HISTTIMEFORMAT="[%F %T] "
 # Change the file location because certain bash sessions truncate .bash_history file upon close.
 # http://superuser.com/questions/575479/bash-history-truncated-to-500-lines-on-each-login
 export HISTFILE=~/.bash_eternal_history
+
+# Sync history alias
+alias sync_hist='history -a; history -c; history -r'
+
 # Force prompt to write history after every command.
 # http://superuser.com/questions/20900/bash-history-loss
-PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+#PROMPT_COMMAND="sync_hist; $PROMPT_COMMAND"
+
+
+
+# Pulseaudio stereo to mono:
+# https://askubuntu.com/questions/17791/can-i-downmix-stereo-audio-to-mono 
+# pacmd list-sinks | grep name:
+# pacmd load-module module-remap-sink sink_name=mono master=<name_of_audiosink_given_by_previous_command> channels=2 channel_map=mono,mono
+
 
