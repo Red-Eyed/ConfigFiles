@@ -30,4 +30,4 @@ set showbreak=+++
 
 set undoreload=10000        " number of lines to save for undo
 set cursorline
-set cursorcolumn
+" set cursorcolumn

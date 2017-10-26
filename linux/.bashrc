@@ -4,6 +4,9 @@
 
 source ~/.bashrc_work
 
+NCPU="$(getconf _NPROCESSORS_ONLN 2> /dev/null)"
+export MAKEFLAGS=" -j$NCPU "
+
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
