@@ -1,11 +1,12 @@
+#!/usr/bin/env bash
+
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-source ~/.bashrc_work
-
-NCPU="$(getconf _NPROCESSORS_ONLN 2> /dev/null)"
-export MAKEFLAGS=" -j$NCPU "
+if [-f ~/.bashrc_work]
+    source ~/.bashrc_work
+fi
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -74,7 +75,7 @@ xterm*|rxvt*)
     ;;
 esac
 alias sudo='sudo '
-# alias date='date  +"%Y/%m/%d %H:%M" '
+alias date='date  +"%Y/%m/%d %H:%M" '
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -151,13 +152,6 @@ alias sync_hist='history -a; history -c; history -r'
 
 # Force prompt to write history after every command.
 # http://superuser.com/questions/20900/bash-history-loss
-#PROMPT_COMMAND="sync_hist; $PROMPT_COMMAND"
+PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
-
-
-# Pulseaudio stereo to mono:
-# https://askubuntu.com/questions/17791/can-i-downmix-stereo-audio-to-mono 
-# pacmd list-sinks | grep name:
-# pacmd load-module module-remap-sink sink_name=mono master=<name_of_audiosink_given_by_previous_command> channels=2 channel_map=mono,mono
-
-
+export PATH=$PATH:~/.local/bin/
