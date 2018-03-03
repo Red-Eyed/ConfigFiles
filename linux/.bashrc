@@ -4,7 +4,7 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-if [-f ~/.bashrc_work]
+if [ -f ~/.bashrc_work ]; then
     source ~/.bashrc_work
 fi
 
