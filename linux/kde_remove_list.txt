@@ -1,6 +1,6 @@
 kamera
+kaccessible
 konversation
-ktorrent
 krdc
 k3b
 cantata
@@ -15,6 +15,7 @@ kdepim-runtime
 kdepim-themeeditors
 kleopatra
 kmail
+kdeconnect
 knotes
 kontact
 korganizer
@@ -22,6 +23,7 @@ ktnef
 mbox-importer
 pim-data-exporter
 pim-sieve-editor
+dolphin
 libreoffice-avmedia-backend-gstreamer
 libreoffice-base
 libreoffice-base-core
@@ -68,6 +70,7 @@ libreoffice-help-it
 libreoffice-help-ru
 libreoffice-help-en-us
 ktorrent-data
+kwalletmanager
 konversation-data
 mysql-client-core-5.7
 mysql-server-core-5.7
