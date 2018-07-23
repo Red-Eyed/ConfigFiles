@@ -56,9 +56,14 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 # Set prompt
+parse_git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+
 export PS1="\
 \[\033[48;0;36m\]\u:\[$(tput sgr0)\]\
 \[\033[48;0;36m\]\h\[$(tput sgr0)\] \
+\$(parse_git_branch) \
 \[\033[38;5;184m\]\w\[$(tput sgr0)\] \
 \[\033[38;5;196m\]\T : \[$(tput sgr0)\] \
 \[\033[38;5;196m\]\d\[$(tput sgr0)\]\
@@ -136,7 +141,7 @@ export HISTCONTROL=ignoreboth:erasedups
 # append to the history file, don't overwrite it
 shopt -s histappend
 
-# Eternal bash history.
+# External bash history.
 # ---------------------
 # Undocumented feature which sets the size to "unlimited".
 # http://stackoverflow.com/questions/9457233/unlimited-bash-history
@@ -155,3 +160,7 @@ alias sync_hist='history -a; history -c; history -r'
 PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 export PATH=$PATH:~/.local/bin/
+
+export CC=$(which clang)
+export CXX=$(which clang++)export PIP_CERT=/etc/ssl/certs/ca-certificates.crt
+export PIP_CERT=/etc/ssl/certs/ca-certificates.crt
