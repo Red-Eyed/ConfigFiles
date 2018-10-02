@@ -56,14 +56,9 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 # Set prompt
-parse_git_branch() {
-    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
-}
-
 export PS1="\
 \[\033[48;0;36m\]\u:\[$(tput sgr0)\]\
 \[\033[48;0;36m\]\h\[$(tput sgr0)\] \
-\$(parse_git_branch) \
 \[\033[38;5;184m\]\w\[$(tput sgr0)\] \
 \[\033[38;5;196m\]\T : \[$(tput sgr0)\] \
 \[\033[38;5;196m\]\d\[$(tput sgr0)\]\
@@ -164,3 +159,6 @@ export PATH=$PATH:~/.local/bin/
 export CC=$(which clang)
 export CXX=$(which clang++)export PIP_CERT=/etc/ssl/certs/ca-certificates.crt
 export PIP_CERT=/etc/ssl/certs/ca-certificates.crt
+
+# added by Miniconda3 installer
+export PATH="/mnt/DATA/miniconda3/bin:$PATH"
