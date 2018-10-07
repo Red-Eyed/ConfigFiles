@@ -68,6 +68,10 @@ plugins=(
   autopep8
   pip
   docker
+  colorize
+  colored-man-pages
+  rsync
+
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -105,6 +109,9 @@ source $ZSH/oh-my-zsh.sh
 ## HISTORY SETTINGS
 HISTSIZE=10000000
 SAVEHIST=10000000
+
+## Regex search
+bindkey '^R' history-incremental-pattern-search-backward
 
 setopt BANG_HIST                 # Treat the '!' character specially during expansion.
 setopt EXTENDED_HISTORY          # Write the history file in the ":start:elapsed;command" format.
