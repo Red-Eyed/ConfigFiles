@@ -72,7 +72,6 @@ plugins=(
   colored-man-pages
   rsync
   extract
-  zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
