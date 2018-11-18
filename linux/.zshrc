@@ -64,8 +64,6 @@ HIST_STAMPS="yyyy/mm/dd"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
-  python
-  autopep8
   pip
   docker
   colorize
