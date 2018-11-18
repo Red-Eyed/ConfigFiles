@@ -121,3 +121,6 @@ setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 
 export PATH=$PATH:$HOME/.local/bin
 
+# Remove duplicates in $PATH by changing path type from list to set 
+typeset -aU path
+
