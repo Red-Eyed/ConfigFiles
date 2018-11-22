@@ -125,3 +125,6 @@ export PATH=$PATH:$HOME/.local/bin
 # Remove duplicates in $PATH by changing path type from list to set 
 typeset -aU path
 
+
+export PIPENV_SKIP_LOCK=True
+
