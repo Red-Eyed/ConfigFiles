@@ -3,18 +3,25 @@
 cd $(dirname $(readlink -f $0))
 
 sudo apt install --yes \
-    python3-pip \
     vim \
     git \
     zsh \
     htop \
     meld
 
-pip3 install --user \
+if [[ "$(which pip3)" == "" ]]; then
+    sudo apt install python3-pip --yes
+fi
+
+
+pip3 install --upgrade  --user \
+    pip \
     pydf \
     speedtest-cli \
-    ipython
+    ipython \
+    pipenv
 
+sudo apt purge python3-pip --yes
 
 if [[ ! -d $HOME/.oh-my-zsh ]]; then
     git clone https://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh
@@ -30,5 +37,7 @@ rsync -a linux/.vimrc  $HOME
 
 sudo rsync linux/etc/zsh/ /etc/zsh/
 
-chsh -s $(which zsh)
+if [[ "$SHELL" != "$(which zsh)" ]]; then
+    chsh -s $(which zsh)
+fi
 
