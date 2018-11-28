@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [[ "$EUID" == "0" ]]; then
+   echo "Run this script without sudo!" 
+   exit 1
+fi
+
 cd $(dirname $(readlink -f $0))
 
 sudo apt install --yes \

@@ -1,3 +1,5 @@
+syntax enable
+let python_highlight_all=1
 set number                      " Show line numbers
 set linebreak                   " Break lines at word (requires Wrap lines)
 set showbreak=+++               " Wrap-broken line prefix
@@ -16,7 +18,8 @@ set shiftwidth=4                " Number of auto-indent spaces
 set smartindent                 " Enable smart-indent
 set smarttab                    " Enable smart-tabs
 set softtabstop=4               " Number of spaces per Tab
- 
+set ts=4                        " set tabs to have 4 spaces
+
 " Advanced
 set ruler                       " Show row and column ruler information
  
