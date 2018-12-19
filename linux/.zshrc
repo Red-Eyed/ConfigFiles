@@ -122,15 +122,17 @@ setopt HIST_VERIFY               # Don't execute immediately upon history expans
 setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 
 export PATH=$PATH:$HOME/.local/bin:/snap/bin
+source $HOME/miniconda3/bin/activate py36
 
 autoload bashcompinit
 bashcompinit
-source $HOME/bazel/lib/bazel/bin/bazel-complete.bash
+
+source $HOME/bazel/lib/bazel/bin/bazel-complete.bash > /dev/null 1&>2
+
 eval "$(register-python-argcomplete conda)"
 
 export PIPENV_SKIP_LOCK=True
 
-source $HOME/miniconda3/bin/activate py36
 
 # Remove duplicates in $PATH by changing path type from list to set
 typeset -aU path
