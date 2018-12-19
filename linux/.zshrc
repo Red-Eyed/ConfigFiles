@@ -1,6 +1,7 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 source /etc/environment
+source ~/.profile
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -122,9 +123,14 @@ setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 
 export PATH=$PATH:$HOME/.local/bin:/snap/bin
 
-# Remove duplicates in $PATH by changing path type from list to set 
-typeset -aU path
-
+autoload bashcompinit
+bashcompinit
+source $HOME/bazel/lib/bazel/bin/bazel-complete.bash
+eval "$(register-python-argcomplete conda)"
 
 export PIPENV_SKIP_LOCK=True
 
+source $HOME/miniconda3/bin/activate py36
+
+# Remove duplicates in $PATH by changing path type from list to set
+typeset -aU path
