@@ -1,25 +1,40 @@
 #!/bin/bash
 
 if [[ "$EUID" == "0" ]]; then
-   echo "Run this script without sudo!" 
+   echo "Run this script without sudo!"
    exit 1
 fi
 
 cd $(dirname $(readlink -f $0))
 
 sudo apt install --yes \
-    python3-pip \
     vim \
     git \
     zsh \
     htop \
-    meld
+    meld \
+    ccache
 
+wget -nc https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -P ~/Downloads
 
-pip3 install --upgrade  --user \
+chmod +x ~/Downloads/Miniconda3-latest-Linux-x86_64.sh
+~/Downloads/Miniconda3-latest-Linux-x86_64.sh -bf
+
+source ~/miniconda3/bin/activate base
+
+if [[ -f  ~/miniconda3/envs/py36 ]]; then
+    conda create -n py36 python=3.6
+fi
+
+source ~/miniconda3/bin/activate py36
+
+pip install --upgrade \
     pydf \
     speedtest-cli \
     ipython \
+    argcomplete \
+    numpy \
+    matplotlib
 
 if [[ ! -d $HOME/.oh-my-zsh ]]; then
     git clone https://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh
@@ -33,9 +48,11 @@ rsync -a linux/.bashrc $HOME
 rsync -a linux/.zshrc  $HOME
 rsync -a linux/.vimrc  $HOME
 
-sudo rsync linux/etc/zsh/ /etc/zsh/
+sudo rsync -r linux/etc/zsh/ /etc/zsh/
 
 if [[ "$SHELL" != "$(which zsh)" ]]; then
     chsh -s $(which zsh)
 fi
 
+echo "###################################"
+echo "Please, log out to apply changes!"
