@@ -33,7 +33,6 @@ source ~/miniconda3/bin/activate py36
 export PYTHONNOUSERSITE=1
 
 pip install --upgrade \
-    patool \
     pydf \
     speedtest-cli \
     ipython \
