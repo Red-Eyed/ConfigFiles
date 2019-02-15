@@ -72,6 +72,8 @@ plugins=(
   colored-man-pages
   rsync
   extract
+  copydir
+  copyfile
 )
 
 source $ZSH/oh-my-zsh.sh

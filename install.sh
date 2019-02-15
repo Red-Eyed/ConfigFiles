@@ -14,7 +14,8 @@ sudo apt install --yes \
     htop \
     meld \
     ccache \
-    pigz
+    pigz \
+    patool
 
 wget -nc https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -P ~/Downloads
 
@@ -32,6 +33,7 @@ source ~/miniconda3/bin/activate py36
 export PYTHONNOUSERSITE=1
 
 pip install --upgrade \
+    patool \
     pydf \
     speedtest-cli \
     ipython \
