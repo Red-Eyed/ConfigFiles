@@ -23,7 +23,6 @@ ktnef
 mbox-importer
 pim-data-exporter
 pim-sieve-editor
-dolphin
 python3-uno
 uno-libs3
 ure
