@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 if [[ "$EUID" == "0" ]]; then
    echo "Run this script without sudo!"
@@ -8,6 +9,7 @@ fi
 cd $(dirname $(readlink -f $0))
 
 sudo apt install --yes \
+    mc \
     vim \
     git \
     zsh \
@@ -15,7 +17,32 @@ sudo apt install --yes \
     meld \
     ccache \
     pigz \
-    patool
+    patool \
+    cmake \
+    ninja-build \
+    g++ \
+    clang \
+    clang-format \
+    lldb \
+    neofetch \
+    qtcreator \
+    earlyoom \
+    qbittorrent \
+    network-manager-openvpn \
+    sqlitebrowser \
+    ksystemlog \
+    krita \
+    openssh-server \
+    libreoffice \
+    android-tools-adbd \
+    gparted \
+    seahorse
+
+sudo snap install pycharm-community --classic
+sudo snap install vscode --classic
+sudo snap install skype --classic
+sudo snap install telegram-desktop
+sudo snap install keepassxc
 
 wget -nc https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -P ~/Downloads
 
