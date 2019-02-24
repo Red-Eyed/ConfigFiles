@@ -8,6 +8,7 @@ fi
 
 cd $(dirname $(readlink -f $0))
 
+sudo apt update
 sudo apt install --yes \
     mc \
     vim \
@@ -57,15 +58,19 @@ chmod +x ~/Downloads/Miniconda3-latest-Linux-x86_64.sh
 
 source ~/miniconda3/bin/activate base
 
-if [[ -f  ~/miniconda3/envs/py36 ]]; then
-    conda create -n py36 python=3.6
+VENV=py37
+
+if [[ ! -d ~/miniconda3/envs/$VENV ]]; then
+    yes | conda create -n $VENV python=3.7
 fi
 
-source ~/miniconda3/bin/activate py36
+source ~/miniconda3/bin/deactivate
+source ~/miniconda3/bin/activate $VENV
 
 export PYTHONNOUSERSITE=1
 
 pip install --upgrade \
+    pip \
     pydf \
     speedtest-cli \
     ipython \

@@ -124,7 +124,7 @@ setopt HIST_VERIFY               # Don't execute immediately upon history expans
 setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 
 export PATH=$PATH:$HOME/.local/bin:/snap/bin
-source $HOME/miniconda3/bin/activate py36
+source $HOME/miniconda3/bin/activate py37
 
 autoload bashcompinit
 bashcompinit
