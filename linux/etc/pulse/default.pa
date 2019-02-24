@@ -32,6 +32,11 @@ load-module module-augment-properties
 ### Should be after module-*-restore but before module-*-detect
 load-module module-switch-on-port-available
 
+### Use hot-plugged devices like Bluetooth or USB automatically (LP: #1702794)
+.ifexists module-switch-on-connect.so
+load-module module-switch-on-connect
+.endif
+
 ### Load audio drivers statically
 ### (it's probably better to not load these drivers manually, but instead
 ### use module-udev-detect -- see below -- for doing this automatically)
@@ -138,11 +143,6 @@ load-module module-filter-apply
 ### Make some devices default
 #set-default-sink output
 #set-default-source input
-
-### Use hot-plugged devices like Bluetooth or USB automatically (LP: #1702794)
-.ifexists module-switch-on-connect.so
-load-module module-switch-on-connect
-.endif
 
 # Stereo to mono
 # pacmd list-sinks | grep name:
