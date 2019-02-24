@@ -18,6 +18,7 @@ sudo apt install --yes \
     ccache \
     pigz \
     patool \
+    build-essential \
     cmake \
     ninja-build \
     g++ \
@@ -36,7 +37,12 @@ sudo apt install --yes \
     libreoffice \
     android-tools-adbd \
     gparted \
-    seahorse
+    seahorse \
+    mtp-tools \
+    ntfs-3g \
+    nfs-common \
+    sshfs \
+    filezilla
 
 sudo snap install pycharm-community --classic
 sudo snap install vscode --classic
@@ -65,7 +71,8 @@ pip install --upgrade \
     ipython \
     argcomplete \
     numpy \
-    matplotlib
+    matplotlib \
+    gpustat
 
 if [[ ! -d $HOME/.oh-my-zsh ]]; then
     git clone https://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh
