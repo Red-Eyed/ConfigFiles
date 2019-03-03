@@ -14,4 +14,8 @@ choco install -y pycharm-community
 choco install -y qbittorrent
 choco install -y vlc
 choco install -y 7zip
+
+refreshenv
+
+conda install -n root -c pscondaenvs pscondaenvs
     
