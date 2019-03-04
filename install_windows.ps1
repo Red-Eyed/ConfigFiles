@@ -5,7 +5,7 @@ If(-Not (Test-Path -Path "$env:ProgramData\Chocolatey")) {
 }
 
 choco install miniconda3 --params="'/AddToPath:1'" -y
-choco install -y
+choco install -y openssh
 choco install -y git
 choco install -y vim
 choco install -y meld
