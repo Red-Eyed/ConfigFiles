@@ -17,5 +17,5 @@ choco install -y 7zip
 
 refreshenv
 
+conda init powershell
 conda install -n root -c pscondaenvs pscondaenvs
-    
