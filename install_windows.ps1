@@ -4,7 +4,7 @@ If(-Not (Test-Path -Path "$env:ProgramData\Chocolatey")) {
     Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 }
 
-choco install miniconda3 --params="'/AddToPath:1'" -y
+choco install -y miniconda3 --params="'/AddToPath:1'"
 choco install -y chocolateypackageupdater
 choco install -y openssh
 choco install -y git
