@@ -5,6 +5,7 @@ If(-Not (Test-Path -Path "$env:ProgramData\Chocolatey")) {
 }
 
 choco install miniconda3 --params="'/AddToPath:1'" -y
+choco install -y chocolateypackageupdater
 choco install -y openssh
 choco install -y git
 choco install -y vim
@@ -14,6 +15,9 @@ choco install -y pycharm-community
 choco install -y qbittorrent
 choco install -y vlc
 choco install -y 7zip
+choco install -y cygwin
+choco install -y greenshot
+choco install -y krita
 
 refreshenv
 
