@@ -5,6 +5,7 @@ If(-Not (Test-Path -Path "$env:ProgramData\Chocolatey")) {
 }
 
 choco install -y miniconda3 --params="'/AddToPath:1'"
+choco install -y chocolateygui
 choco install -y chocolateypackageupdater
 choco install -y openssh
 choco install -y git
@@ -22,4 +23,3 @@ choco install -y krita
 refreshenv
 
 conda init powershell
-conda install -n root -c pscondaenvs pscondaenvs
