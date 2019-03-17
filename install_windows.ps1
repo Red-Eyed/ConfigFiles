@@ -19,6 +19,7 @@ choco install -y 7zip
 choco install -y cygwin
 choco install -y greenshot
 choco install -y krita
+choco install -y hwinfo
 
 refreshenv
 
