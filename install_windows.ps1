@@ -20,6 +20,8 @@ choco install -y cygwin
 choco install -y greenshot
 choco install -y krita
 choco install -y hwinfo
+choco install -y procexp
+choco install -y totalcommander
 
 refreshenv
 
