@@ -9,8 +9,6 @@ choco install -y chocolateygui
 choco install -y chocolateypackageupdater
 choco install -y openssh
 choco install -y git
-choco install -y vim
-choco install -y meld
 choco install -y vscode
 choco install -y pycharm-community
 choco install -y qbittorrent
