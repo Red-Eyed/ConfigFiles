@@ -46,7 +46,7 @@ sudo apt install --yes \
     filezilla
 
 sudo snap install pycharm-community --classic
-sudo snap install vscode --classic
+sudo snap install code --classic
 sudo snap install skype --classic
 sudo snap install telegram-desktop
 sudo snap install keepassxc
