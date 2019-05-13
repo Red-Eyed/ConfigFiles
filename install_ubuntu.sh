@@ -71,13 +71,12 @@ export PYTHONNOUSERSITE=1
 
 pip install --upgrade \
     pip \
-    pydf \
     speedtest-cli \
     ipython \
     argcomplete \
     numpy \
-    matplotlib \
-    gpustat
+    pandas \
+    matplotlib
 
 if [[ ! -d $HOME/.oh-my-zsh ]]; then
     git clone https://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh
