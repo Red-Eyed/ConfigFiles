@@ -145,7 +145,7 @@ load-module module-filter-apply
 #set-default-source input
 
 # Stereo to mono
-# pacmd list-sinks | grep name:
+# pactl list short sinks
 # https://askubuntu.com/questions/17791/can-i-downmix-stereo-audio-to-mono
 load-module module-remap-sink sink_name=mono master=alsa_output.pci-0000_00_1b.0.analog-stereo channels=2 channel_map=mono,mono
 set-default-sink mono
