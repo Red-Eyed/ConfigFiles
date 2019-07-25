@@ -45,7 +45,11 @@ sudo apt install --yes \
     sshfs \
     filezilla
 
-sudo snap install pycharm-community --classic
+# if professional is installed do not install community
+if [[ $(snap list | grep -q pycharm) ]]; then
+    sudo snap install pycharm-community --classic
+fi
+
 sudo snap install code --classic
 sudo snap install skype --classic
 sudo snap install telegram-desktop
@@ -94,6 +98,11 @@ sudo rsync -r linux/etc/zsh/ /etc/zsh/
 
 if [[ "$SHELL" != "$(which zsh)" ]]; then
     chsh -s $(which zsh)
+fi
+
+if [[ -x "$(command -v balooctl)" ]]; then
+    balooctl stop
+    balooctl disable
 fi
 
 echo "###################################"
