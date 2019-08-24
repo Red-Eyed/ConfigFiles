@@ -41,19 +41,24 @@ sudo apt install --yes \
     seahorse \
     mtp-tools \
     ntfs-3g \
+    cifs-utils \
     nfs-common \
     sshfs \
-    filezilla
+    filezilla \
+    flatpak \
+    gnome-software-plugin-flatpak
+
+sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 # if professional is installed do not install community
 if [[ $(snap list | grep -q pycharm) ]]; then
     sudo snap install pycharm-community --classic
 fi
-
 sudo snap install code --classic
 sudo snap install skype --classic
 sudo snap install telegram-desktop
 sudo snap install keepassxc
+
 
 wget -nc https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -P ~/Downloads
 
