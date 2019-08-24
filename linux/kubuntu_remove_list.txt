@@ -35,9 +35,3 @@ kf5-kdepim-apps-libs-data
 kf5-messagelib-data
 kio-ldap
 kio-sieve
-libkpimgapicalendar5
-libkpimgapicontacts5
-libkpimgapitasks5
-libkpimimportwizard5
-libkpimkdav5
-libkpimkdav-data
