@@ -46,9 +46,11 @@ sudo apt install --yes \
     sshfs \
     filezilla \
     flatpak \
-    gnome-software-plugin-flatpak
+    gnome-software-plugin-flatpak \
+    gnome-tweaks
 
 sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+sudo flatpak install com.anydesk.Anydesk
 
 # if professional is installed do not install community
 if [[ $(snap list | grep -q pycharm) ]]; then
@@ -67,6 +69,15 @@ chmod +x ~/Downloads/Miniconda3-latest-Linux-x86_64.sh
 
 source ~/miniconda3/bin/activate base
 
+pip install --upgrade \
+    pip \
+    speedtest-cli \
+    ipython \
+    argcomplete \
+    numpy \
+    pandas \
+    matplotlib
+
 VENV=py37
 
 if [[ ! -d ~/miniconda3/envs/$VENV ]]; then
@@ -78,14 +89,7 @@ source ~/miniconda3/bin/activate $VENV
 
 export PYTHONNOUSERSITE=1
 
-pip install --upgrade \
-    pip \
-    speedtest-cli \
-    ipython \
-    argcomplete \
-    numpy \
-    pandas \
-    matplotlib
+
 
 if [[ ! -d $HOME/.oh-my-zsh ]]; then
     git clone https://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh
