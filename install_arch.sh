@@ -25,7 +25,9 @@ sudo pacman -Suy --needed --noconfirm \
     lldb \
     ethtool \
     neofetch \
-    gnome-mplayer \
+    keepassxc \
+    vlc \
+    code \
     qtcreator \
     qbittorrent \
     sqlitebrowser \
@@ -47,11 +49,7 @@ sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub
 if [[ $(snap list | grep -q pycharm) ]]; then
     sudo snap install pycharm-community --classic
 fi
-sudo snap install code --classic
-sudo snap install skype --classic
 sudo snap install telegram-desktop
-sudo snap install keepassxc
-
 
 wget -nc https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -P ~/Downloads
 
