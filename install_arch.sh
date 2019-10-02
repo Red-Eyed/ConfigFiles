@@ -8,7 +8,9 @@ fi
 
 cd $(dirname $(readlink -f $0))
 
-sudo pacman -Suy --needed \
+sudo pacman -Suy --needed --noconfirm \
+    base-devel \
+    yay \
     mc \
     vim \
     git \
@@ -23,6 +25,7 @@ sudo pacman -Suy --needed \
     lldb \
     ethtool \
     neofetch \
+    gnome-mplayer \
     qtcreator \
     qbittorrent \
     sqlitebrowser \
@@ -34,6 +37,7 @@ sudo pacman -Suy --needed \
     ntfs-3g \
     cifs-utils \
     sshfs \
+    openssh \
     filezilla \
     flatpak
 
