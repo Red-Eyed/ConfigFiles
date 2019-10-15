@@ -8,6 +8,11 @@ fi
 
 cd $(dirname $(readlink -f $0))
 
+if [[ "$XDG_CURRENT_DESKTOP" == "GNOME" ]]; then
+    gsettings set org.gnome.shell.app-switcher current-workspace-only true
+    gsettings set org.gnome.shell.extensions.dash-to-dock isolate-workspaces true
+fi
+
 sudo pacman -Suy --needed \
     mc \
     vim \
@@ -21,8 +26,10 @@ sudo pacman -Suy --needed \
     ninja \
     clang \
     lldb \
+    fwupd \
     ethtool \
     neofetch \
+    yay \
     qtcreator \
     qbittorrent \
     sqlitebrowser \
@@ -30,14 +37,19 @@ sudo pacman -Suy --needed \
     libreoffice \
     android-tools \
     gparted \
+    grub-customizer \
     seahorse \
     ntfs-3g \
     cifs-utils \
     sshfs \
     filezilla \
+    snapd \
     flatpak
 
 sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+sudo systemctl enable --now snapd.socket
+sudo ln -sf /var/lib/snapd/snap /snap
 
 # if professional is installed do not install community
 if [[ $(snap list | grep -q pycharm) ]]; then
@@ -48,11 +60,15 @@ sudo snap install skype --classic
 sudo snap install telegram-desktop
 sudo snap install keepassxc
 
+sudo snap connect keepassxc:removable-media
 
 wget -nc https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -P ~/Downloads
 
 chmod +x ~/Downloads/Miniconda3-latest-Linux-x86_64.sh
-~/Downloads/Miniconda3-latest-Linux-x86_64.sh -bf
+
+if [[ ! -d ~/miniconda3/envs/$VENV ]]; then
+    ~/Downloads/Miniconda3-latest-Linux-x86_64.sh -bf
+fi
 
 source ~/miniconda3/bin/activate base
 
