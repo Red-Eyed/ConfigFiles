@@ -14,6 +14,8 @@ if [[ "$XDG_CURRENT_DESKTOP" == "GNOME" ]]; then
 fi
 
 sudo pacman -Suy --needed \
+    base-devel \
+    yay \
     mc \
     vim \
     git \
@@ -29,7 +31,7 @@ sudo pacman -Suy --needed \
     fwupd \
     ethtool \
     neofetch \
-    yay \
+    vlc \
     qtcreator \
     qbittorrent \
     sqlitebrowser \
@@ -42,6 +44,7 @@ sudo pacman -Suy --needed \
     ntfs-3g \
     cifs-utils \
     sshfs \
+    openssh \
     filezilla \
     snapd \
     flatpak
@@ -60,7 +63,6 @@ sudo snap install skype --classic
 sudo snap install telegram-desktop
 sudo snap install keepassxc
 
-sudo snap connect keepassxc:removable-media
 
 wget -nc https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -P ~/Downloads
 
