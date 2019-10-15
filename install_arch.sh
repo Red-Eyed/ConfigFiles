@@ -13,7 +13,7 @@ if [[ "$XDG_CURRENT_DESKTOP" == "GNOME" ]]; then
     gsettings set org.gnome.shell.extensions.dash-to-dock isolate-workspaces true
 fi
 
-sudo pacman -Suy --needed \
+sudo pacman -Suy --needed --noconfirm \
     base-devel \
     yay \
     mc \
