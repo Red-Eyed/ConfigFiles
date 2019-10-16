@@ -9,8 +9,8 @@ fi
 cd $(dirname $(readlink -f $0))
 
 if [[ "$XDG_CURRENT_DESKTOP" == "GNOME" ]]; then
-    gsettings set org.gnome.shell.app-switcher current-workspace-only true
-    gsettings set org.gnome.shell.extensions.dash-to-dock isolate-workspaces true
+    /bin/gsettings set org.gnome.shell.app-switcher current-workspace-only true
+    /bin/gsettings set org.gnome.shell.extensions.dash-to-dock isolate-workspaces true
 fi
 
 sudo pacman -Suy --needed --noconfirm \
