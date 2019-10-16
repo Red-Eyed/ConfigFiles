@@ -55,7 +55,7 @@ sudo systemctl enable --now snapd.socket
 sudo ln -sf /var/lib/snapd/snap /snap
 
 # if professional is installed do not install community
-if [[ $(snap list | grep -q pycharm) ]]; then
+if [[ $(snap list | grep -q pycharm) == "" ]]; then
     sudo snap install pycharm-community --classic
 fi
 sudo snap install code --classic
