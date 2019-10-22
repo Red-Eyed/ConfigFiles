@@ -15,6 +15,7 @@ fi
 
 sudo pacman -Suy --needed --noconfirm \
     base-devel \
+    strace \
     yay \
     mc \
     vim \
