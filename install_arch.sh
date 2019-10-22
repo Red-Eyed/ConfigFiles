@@ -56,7 +56,7 @@ sudo systemctl enable --now snapd.socket
 sudo ln -sf /var/lib/snapd/snap /snap
 
 # if professional is installed do not install community
-if [[ $(snap list | grep -q pycharm) == "" ]]; then
+if ! $(snap list | grep -q pycharm) ; then
     sudo snap install pycharm-community --classic
 fi
 sudo snap install code --classic
@@ -72,6 +72,9 @@ chmod +x ~/Downloads/Miniconda3-latest-Linux-x86_64.sh
 if [[ ! -d ~/miniconda3/envs/$VENV ]]; then
     ~/Downloads/Miniconda3-latest-Linux-x86_64.sh -bf
 fi
+
+# update conda
+yes | conda update -n base -c defaults conda
 
 source ~/miniconda3/bin/activate base
 
