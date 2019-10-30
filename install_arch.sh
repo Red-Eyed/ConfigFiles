@@ -15,6 +15,12 @@ fi
 
 sudo pacman -Suy --needed --noconfirm \
     base-devel \
+    gcc-fortran \
+    intel-tbb \
+    cblas \
+    lapack \
+    lapacke \
+    eigen \
     strace \
     yay \
     mc \
@@ -73,10 +79,10 @@ if [[ ! -d ~/miniconda3/envs/$VENV ]]; then
     ~/Downloads/Miniconda3-latest-Linux-x86_64.sh -bf
 fi
 
-# update conda
-yes | conda update -n base -c defaults conda
 
 source ~/miniconda3/bin/activate base
+# update conda
+yes | conda update -n base -c defaults conda
 
 VENV=py37
 
