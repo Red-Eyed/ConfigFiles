@@ -2,11 +2,14 @@
 
 cd $(dirname $(readlink -f $0))
 
-# rm -rf build
 mkdir -p build/install
 cd build
 
+# on archlinux install:
+# pacman -S gcc-fortran intel-tbb openblas cblas lapack lapacke eigen
+
 cmake   -G "Ninja" \
+        -DOpenGL_GL_PREFERENCE="GLVND" \
         -DCMAKE_INSTALL_PREFIX="/usr/local" \
         -DCMAKE_CXX_FLAGS="-march=native -O3" \
         -DCUDA_VERBOSE_BUILD=ON \
