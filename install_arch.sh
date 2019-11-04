@@ -13,6 +13,9 @@ if [[ "$XDG_CURRENT_DESKTOP" == "GNOME" ]]; then
     /bin/gsettings set org.gnome.shell.extensions.dash-to-dock isolate-workspaces true
 fi
 
+# Enable fstrim for SSD
+sudo systemctl enable fstrim.timer
+
 sudo pacman -Suy --needed --noconfirm \
     base-devel \
     gcc-fortran \
@@ -54,7 +57,8 @@ sudo pacman -Suy --needed --noconfirm \
     openssh \
     filezilla \
     snapd \
-    flatpak
+    flatpak \
+    gtkhash-nautilus
 
 sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
