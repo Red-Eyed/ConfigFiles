@@ -131,7 +131,8 @@ bashcompinit
 
 source $HOME/bazel/lib/bazel/bin/bazel-complete.bash > /dev/null 2>&1
 
-eval "$(register-python-argcomplete conda)"
+export CC=clang
+export CXX=clang++
 
 export PIPENV_SKIP_LOCK=True
 

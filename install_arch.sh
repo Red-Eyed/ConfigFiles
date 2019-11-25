@@ -105,10 +105,10 @@ pip install --upgrade \
     speedtest-cli \
     ipython \
     jupyterlab \
-    argcomplete \
     numpy \
     pandas \
-    matplotlib
+    matplotlib \
+    setuptools
 
 if [[ ! -d $HOME/.oh-my-zsh ]]; then
     git clone https://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh
