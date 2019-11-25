@@ -104,6 +104,7 @@ pip install --upgrade \
     pip \
     speedtest-cli \
     ipython \
+    jupyterlab \
     argcomplete \
     numpy \
     pandas \
