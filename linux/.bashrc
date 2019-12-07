@@ -159,7 +159,7 @@ export PATH=$PATH:~/.local/bin/
 export CC=$(which clang)
 export CXX=$(which clang++)export PIP_CERT=/etc/ssl/certs/ca-certificates.crt
 export PIP_CERT=/etc/ssl/certs/ca-certificates.crt
-export PYTONNOUSERSITE=1
+export PYTHONNOUSERSITE=1
 
 # added by Miniconda3 installer
 export PATH="/mnt/DATA/miniconda3/bin:$PATH"

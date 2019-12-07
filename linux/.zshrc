@@ -123,7 +123,7 @@ setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording en
 setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
 setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 
-export PYTONNOUSERSITE=1
+export PYTHONNOUSERSITE=1
 export PATH=$PATH:$HOME/.local/bin:/snap/bin
 source $HOME/miniconda3/bin/activate py37
 
