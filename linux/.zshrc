@@ -123,18 +123,18 @@ setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording en
 setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
 setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 
+export PYTONNOUSERSITE=1
 export PATH=$PATH:$HOME/.local/bin:/snap/bin
 source $HOME/miniconda3/bin/activate py37
 
 autoload bashcompinit
 bashcompinit
 
-source $HOME/bazel/lib/bazel/bin/bazel-complete.bash > /dev/null 2>&1
-
 export CC=clang
 export CXX=clang++
 
 export PIPENV_SKIP_LOCK=True
+
 
 
 # Remove duplicates in $PATH by changing path type from list to set
