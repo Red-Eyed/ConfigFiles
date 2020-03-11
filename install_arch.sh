@@ -61,7 +61,7 @@ sudo pacman -Suy --needed --noconfirm \
     gtkhash-nautilus \
     hardinfo \
     tlpui \
-    gnome-software-snap
+    gnome-software
 
 sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
