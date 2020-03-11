@@ -29,6 +29,7 @@ sudo pacman -Suy --needed --noconfirm \
     mc \
     vim \
     git \
+    git-lfs \
     zsh \
     htop \
     meld \
