@@ -49,9 +49,7 @@ sudo apt install --yes \
     gnome-software-plugin-flatpak \
     gnome-tweaks
 
-sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-sudo flatpak install com.anydesk.Anydesk
-
+. ./install_flatpak.sh
 . ./install_snap.sh
 . ./install_python.sh
 . ./install_oh-my-zsh.sh

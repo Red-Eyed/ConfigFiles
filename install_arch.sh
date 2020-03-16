@@ -65,11 +65,10 @@ sudo pacman -Suy --needed --noconfirm \
     tlpui \
     gnome-software
 
-sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-
 sudo systemctl enable --now snapd.socket
 sudo ln -sf /var/lib/snapd/snap /snap
 
+. ./install_flatpak.sh
 . ./install_snap.sh
 . ./install_python.sh
 . ./install_oh-my-zsh.sh
