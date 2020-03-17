@@ -24,10 +24,14 @@ export PYTHONNOUSERSITE=1
 
 pip install --upgrade \
     pip \
-    speedtest-cli \
+    pipx \
     ipython \
     jupyterlab \
     numpy \
     pandas \
     matplotlib \
     setuptools
+
+pipx install youtube-dl
+pipx install speedtest-cli
+pipx install kaggle
