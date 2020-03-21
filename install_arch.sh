@@ -52,7 +52,6 @@ sudo pacman -Suy --needed --noconfirm \
     cifs-utils \
     sshfs \
     openssh \
-    filezilla \
     snapd \
     flatpak \
     gtkhash-nautilus \
