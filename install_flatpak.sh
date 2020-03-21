@@ -1,5 +1,6 @@
 sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 sudo flatpak update --noninteractive
+
 sudo flatpak install --noninteractive \
     com.github.tchx84.Flatseal \
     org.keepassxc.KeePassXC \
@@ -8,4 +9,9 @@ sudo flatpak install --noninteractive \
     org.telegram \
     com.github.wwmm.pulseeffects  \
     com.valvesoftware.Steam \
-    org.gimp.GIMP
+    com.discordapp.Discord \
+    org.gimp.GIMP \
+    org.qbittorrent.qBittorrent \
+    org.libreoffice.LibreOffice \
+    org.gnome.seahorse.Application \
+    org.filezillaproject.Filezilla

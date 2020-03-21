@@ -44,13 +44,10 @@ sudo pacman -Suy --needed --noconfirm \
     neofetch \
     vlc \
     qtcreator \
-    qbittorrent \
     sqlitebrowser \
-    libreoffice \
     android-tools \
     gparted \
     grub-customizer \
-    seahorse \
     ntfs-3g \
     cifs-utils \
     sshfs \

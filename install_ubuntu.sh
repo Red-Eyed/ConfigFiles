@@ -29,20 +29,16 @@ sudo apt install --yes \
     neofetch \
     qtcreator \
     earlyoom \
-    qbittorrent \
     network-manager-openvpn \
     sqlitebrowser \
     openssh-server \
-    libreoffice \
     android-tools-adbd \
     gparted \
-    seahorse \
     mtp-tools \
     ntfs-3g \
     cifs-utils \
     nfs-common \
     sshfs \
-    filezilla \
     flatpak \
     gnome-software-plugin-flatpak \
     gnome-tweaks
