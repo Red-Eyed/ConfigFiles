@@ -32,8 +32,6 @@ sudo apt install --yes \
     qbittorrent \
     network-manager-openvpn \
     sqlitebrowser \
-    ksystemlog \
-    krita \
     openssh-server \
     libreoffice \
     android-tools-adbd \

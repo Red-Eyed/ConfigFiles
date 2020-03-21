@@ -5,4 +5,7 @@ sudo flatpak install --noninteractive \
     org.keepassxc.KeePassXC \
     com.slack.Slack \
     com.skype.Client \
-    org.telegram
+    org.telegram \
+    com.github.wwmm.pulseeffects  \
+    com.valvesoftware.Steam \
+    org.gimp.GIMP

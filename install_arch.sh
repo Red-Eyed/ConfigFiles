@@ -46,8 +46,6 @@ sudo pacman -Suy --needed --noconfirm \
     qtcreator \
     qbittorrent \
     sqlitebrowser \
-    krita \
-    pulseeffects \
     libreoffice \
     android-tools \
     gparted \
