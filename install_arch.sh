@@ -42,7 +42,6 @@ sudo pacman -Suy --needed --noconfirm \
     fwupd \
     ethtool \
     neofetch \
-    vlc \
     qtcreator \
     sqlitebrowser \
     android-tools \

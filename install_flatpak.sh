@@ -14,4 +14,6 @@ sudo flatpak install --noninteractive \
     org.qbittorrent.qBittorrent \
     org.libreoffice.LibreOffice \
     org.gnome.seahorse.Application \
-    org.filezillaproject.Filezilla
+    org.filezillaproject.Filezilla \
+    org.videolan.VLC \
+    org.gnome.Logs
