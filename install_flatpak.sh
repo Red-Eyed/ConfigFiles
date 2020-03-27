@@ -1,7 +1,7 @@
-flatpak --system remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-flatpak --system update --noninteractive
+sudo flatpak --system remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+sudo flatpak --system update --noninteractive
 
-flatpak --system install --noninteractive \
+sudo flatpak --system install --noninteractive \
     com.github.tchx84.Flatseal \
     org.keepassxc.KeePassXC \
     com.slack.Slack \
