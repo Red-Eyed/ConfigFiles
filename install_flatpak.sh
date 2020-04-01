@@ -19,4 +19,6 @@ sudo flatpak --system install --noninteractive \
     org.gnome.seahorse.Application \
     org.gnome.Logs \
     org.gnome.Maps \
-    com.uploadedlobster.peek
+    com.uploadedlobster.peek \
+    com.jetbrains.PyCharm-Professional \
+    com.jetbrains.PyCharm-Community
