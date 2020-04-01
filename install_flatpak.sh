@@ -9,12 +9,14 @@ sudo flatpak --system install --noninteractive \
     org.telegram \
     com.discordapp.Discord \
     com.github.wwmm.pulseeffects  \
+    org.pulseaudio.pavucontrol \
     com.valvesoftware.Steam \
     org.gimp.GIMP \
     org.qbittorrent.qBittorrent \
     org.libreoffice.LibreOffice \
-    org.gnome.seahorse.Application \
     org.filezillaproject.Filezilla \
     org.videolan.VLC \
+    org.gnome.seahorse.Application \
     org.gnome.Logs \
-    org.gnome.Maps
+    org.gnome.Maps \
+    com.uploadedlobster.peek
