@@ -125,17 +125,13 @@ setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 
 export PYTHONNOUSERSITE=1
 export PATH=$PATH:$HOME/.local/bin:/snap/bin
-source $HOME/miniconda3/bin/activate py37
+source $HOME/miniconda3/bin/activate default
 
 autoload bashcompinit
 bashcompinit
 
 export CC=clang
 export CXX=clang++
-
-export PIPENV_SKIP_LOCK=True
-
-
 
 # Remove duplicates in $PATH by changing path type from list to set
 typeset -aU path

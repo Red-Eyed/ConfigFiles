@@ -6,18 +6,18 @@ if [[ ! -d ~/miniconda3/envs/$VENV ]]; then
     ~/Downloads/Miniconda3-latest-Linux-x86_64.sh -bf
 fi
 
-
 source ~/miniconda3/bin/activate base
 # update conda
 yes | conda update -n base -c defaults conda
 
-VENV=py37
+VENV=default
+PYTON_VERSION=3.8
 
 if [[ ! -d ~/miniconda3/envs/$VENV ]]; then
-    yes | conda create -n $VENV python=3.7
+    yes | conda create -n $VENV python=$PYTON_VERSION
 fi
 
-source ~/miniconda3/bin/deactivate
+conda deactivate
 source ~/miniconda3/bin/activate $VENV
 
 export PYTHONNOUSERSITE=1
