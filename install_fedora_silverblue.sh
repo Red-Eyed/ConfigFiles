@@ -14,8 +14,10 @@ yes| sudo rpm-ostree install --idempotent --allow-inactive \
     https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
 
-yes | sudo rpm-ostree --idempotent --allow-inactive \
+yes | sudo rpm-ostree install --idempotent --allow-inactive \
     file-roller \
+    unrar \
+    p7zip \
     mc \
     vim \
     git \
@@ -26,7 +28,6 @@ yes | sudo rpm-ostree --idempotent --allow-inactive \
     patool \
     cmake \
     neofetch \
-    network-manager-openvpn \
     openssh-server \
     gparted \
     sshfs \
