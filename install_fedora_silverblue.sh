@@ -8,14 +8,9 @@ fi
 
 cd $(dirname $(readlink -f $0))
 
-# adding rpm fusion
-sudo rpm-ostree install --allow-inactive \
+pkgs="\
     https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
-    https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-
-
-sudo yes | sudo rpm-ostree --allow-inactive \
-    file-roller \
+    https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpmfile-roller \
     mc \
     vim \
     git \
@@ -30,7 +25,19 @@ sudo yes | sudo rpm-ostree --allow-inactive \
     openssh-server \
     gparted \
     sshfs \
-    gnome-tweaks
+    gnome-tweaksfuse-sshfs \
+    strace \
+    tmux \
+"
+
+status=$(rpm-ostree status)
+for pkg in $pkgs; do
+    pkg=$(basename "$pkg")
+    if ! grep -qF "$pkg" <<< "${status}"; then
+        rpm-ostree install $pkgs
+        break
+    fi
+done
 
 . ./install_flatpak.sh
 . ./install_python.sh
