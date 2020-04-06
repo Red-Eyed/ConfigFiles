@@ -9,12 +9,12 @@ fi
 cd $(dirname $(readlink -f $0))
 
 # adding rpm fusion
-sudo rpm-ostree install --allow-inactive \
+yes| sudo rpm-ostree install --idempotent --allow-inactive \
     https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
     https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
 
-sudo yes | sudo rpm-ostree --allow-inactive \
+yes | sudo rpm-ostree --idempotent --allow-inactive \
     file-roller \
     mc \
     vim \
