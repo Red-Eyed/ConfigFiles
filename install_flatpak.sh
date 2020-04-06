@@ -20,4 +20,5 @@ sudo flatpak --system install --noninteractive \
     org.gnome.Logs \
     org.gnome.Maps \
     com.uploadedlobster.peek \
-    com.github.unrud.VideoDownloader
+    com.github.unrud.VideoDownloader \
+    org.gnome.gedit
