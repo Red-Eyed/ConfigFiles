@@ -26,7 +26,6 @@ yes | sudo rpm-ostree install --idempotent --allow-inactive \
     htop \
     ccache \
     pigz \
-    patool \
     cmake \
     neofetch \
     openssh-server \
