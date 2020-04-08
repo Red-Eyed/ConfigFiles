@@ -13,6 +13,7 @@ sudo flatpak --system update --noninteractive
 
 sudo flatpak --system install --noninteractive \
     com.github.tchx84.Flatseal \
+    org.mozilla.firefox \
     org.keepassxc.KeePassXC \
     com.slack.Slack \
     com.skype.Client \
@@ -34,8 +35,8 @@ sudo flatpak --system install --noninteractive \
     org.gnome.gedit
 
 mkdir -p $HOME/.config/systemd/user
-rsync -av ./linux/flatpak-update.service $HOME/.config/systemd/user/
-rsync -av ./linux/flatpak-update.timer $HOME/.config/systemd/user/
+rsync -a ./linux/flatpak-update.service $HOME/.config/systemd/user/
+rsync -a ./linux/flatpak-update.timer $HOME/.config/systemd/user/
 
 
 systemctl --user enable --now flatpak-update.timer
