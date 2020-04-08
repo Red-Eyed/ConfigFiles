@@ -56,7 +56,9 @@ sudo pacman -Suy --needed --noconfirm \
     gtkhash-nautilus \
     hardinfo \
     tlpui \
-    gnome-software
+    gnome-software \
+    gnome-tweaks \
+    icedtea-web
 
 sudo systemctl enable --now snapd.socket
 sudo ln -sf /var/lib/snapd/snap /snap
