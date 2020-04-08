@@ -33,9 +33,10 @@ yes | sudo rpm-ostree install --idempotent --allow-inactive \
     sshfs \
     gnome-tweaks
 
-. ./install_flatpak.sh
-. ./install_python.sh
-. ./install_oh-my-zsh.sh
+./install_flatpak.sh
+./install_snap.sh
+./install_python.sh
+./install_oh-my-zsh.sh
 
 echo "###################################"
 echo "Please, log out to apply changes!"

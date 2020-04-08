@@ -43,10 +43,10 @@ sudo apt install --yes \
     gnome-software-plugin-flatpak \
     gnome-tweaks
 
-. ./install_flatpak.sh
-. ./install_snap.sh
-. ./install_python.sh
-. ./install_oh-my-zsh.sh
+./install_flatpak.sh
+./install_snap.sh
+./install_python.sh
+./install_oh-my-zsh.sh
 
 if [[ -x "$(command -v balooctl)" ]]; then
     balooctl stop

@@ -1,3 +1,13 @@
+#!/bin/bash
+set -e
+
+if [[ "$EUID" == "0" ]]; then
+   echo "Run this script without sudo!"
+   exit 1
+fi
+
+cd $(dirname $(readlink -f $0))
+
 if [[ ! -d $HOME/.oh-my-zsh ]]; then
     git clone https://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh
 else

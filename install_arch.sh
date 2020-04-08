@@ -61,10 +61,10 @@ sudo pacman -Suy --needed --noconfirm \
 sudo systemctl enable --now snapd.socket
 sudo ln -sf /var/lib/snapd/snap /snap
 
-. ./install_flatpak.sh
-. ./install_snap.sh
-. ./install_python.sh
-. ./install_oh-my-zsh.sh
+./install_flatpak.sh
+./install_snap.sh
+./install_python.sh
+./install_oh-my-zsh.sh
 
 if [[ -x "$(command -v balooctl)" ]]; then
     balooctl stop
