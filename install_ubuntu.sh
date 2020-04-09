@@ -43,7 +43,8 @@ sudo apt install --yes \
     gnome-software-plugin-flatpak \
     gnome-tweaks \
     icedtea-netx \
-    nmap
+    nmap \
+    python-nautilus
 
 ./install_flatpak.sh
 ./install_snap.sh

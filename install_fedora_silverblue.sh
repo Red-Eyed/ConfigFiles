@@ -32,7 +32,10 @@ yes | sudo rpm-ostree install --idempotent --allow-inactive \
     gparted \
     sshfs \
     gnome-tweaks \
-    nmap
+    nmap \
+    nautilus-python \
+    nautilus-extensions \
+    openssl
 
 ./install_flatpak.sh
 ./install_snap.sh
