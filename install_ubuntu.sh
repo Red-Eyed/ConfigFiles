@@ -42,7 +42,8 @@ sudo apt install --yes \
     flatpak \
     gnome-software-plugin-flatpak \
     gnome-tweaks \
-    icedtea-netx
+    icedtea-netx \
+    nmap
 
 ./install_flatpak.sh
 ./install_snap.sh

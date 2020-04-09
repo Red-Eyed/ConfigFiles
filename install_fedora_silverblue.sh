@@ -31,7 +31,8 @@ yes | sudo rpm-ostree install --idempotent --allow-inactive \
     openssh-server \
     gparted \
     sshfs \
-    gnome-tweaks
+    gnome-tweaks \
+    nmap
 
 ./install_flatpak.sh
 ./install_snap.sh

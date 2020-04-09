@@ -58,7 +58,8 @@ sudo pacman -Suy --needed --noconfirm \
     tlpui \
     gnome-software \
     gnome-tweaks \
-    icedtea-web
+    icedtea-web \
+    nmap
 
 sudo systemctl enable --now snapd.socket
 sudo ln -sf /var/lib/snapd/snap /snap
