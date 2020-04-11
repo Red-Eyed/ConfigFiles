@@ -23,19 +23,16 @@ for cmd in $pkg_managers; do
     fi
 done
 
+# Enable fstrim for SSD
+sudo systemctl enable fstrim.timer
+
+# dotfiles should be first
 ./lib/install_dotfiles.sh
+
 ./lib/install_flatpak.sh
 ./lib/install_snap.sh
 ./lib/install_python.sh
 ./lib/install_oh-my-zsh.sh
-
-systemctl --user enable --now flatpak-update.timer
-
-sudo systemctl enable --now snapd.socket
-sudo ln -sf /var/lib/snapd/snap /snap
-
-# Enable fstrim for SSD
-sudo systemctl enable fstrim.timer
 
 echo "###################################"
 echo "Please, log out to apply changes!"

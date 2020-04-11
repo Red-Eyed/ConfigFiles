@@ -28,3 +28,5 @@ sudo flatpak --system install --noninteractive \
     com.uploadedlobster.peek \
     com.github.unrud.VideoDownloader \
     org.gnome.gedit
+
+systemctl --user enable --now flatpak-update.timer
