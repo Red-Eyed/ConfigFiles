@@ -27,6 +27,7 @@ sudo flatpak --system install --noninteractive flathub \
     org.gnome.Maps \
     com.uploadedlobster.peek \
     com.github.unrud.VideoDownloader \
-    org.gnome.gedit
+    org.gnome.gedit \
+    org.gnome.Characters
 
 systemctl --user enable --now flatpak-update.timer
