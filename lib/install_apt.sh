@@ -27,7 +27,7 @@ sudo apt install --yes \
     network-manager-openvpn \
     sqlitebrowser \
     openssh-server \
-    android-tools-adbd \
+    android-tools-adb \
     gparted \
     mtp-tools \
     ntfs-3g \
