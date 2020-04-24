@@ -1,12 +1,7 @@
 #!/bin/bash
 set -e
-
-if [[ "$EUID" == "0" ]]; then
-   echo "Run this script without sudo!"
-   exit 1
-fi
-
 cd $(dirname $(readlink -f $0))
+. header.sh
 
 sudo apt update
 sudo apt install --yes \
@@ -32,7 +27,7 @@ sudo apt install --yes \
     network-manager-openvpn \
     sqlitebrowser \
     openssh-server \
-    android-tools-adbd \
+    android-tools-adb \
     gparted \
     mtp-tools \
     ntfs-3g \
@@ -44,17 +39,5 @@ sudo apt install --yes \
     gnome-tweaks \
     icedtea-netx \
     nmap \
-    python-nautilus
-
-./install_flatpak.sh
-./install_snap.sh
-./install_python.sh
-./install_oh-my-zsh.sh
-
-if [[ -x "$(command -v balooctl)" ]]; then
-    balooctl stop
-    balooctl disable
-fi
-
-echo "###################################"
-echo "Please, log out to apply changes!"
+    python-nautilus \
+    stow

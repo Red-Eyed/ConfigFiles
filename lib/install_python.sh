@@ -1,12 +1,7 @@
 #!/bin/bash
 set -e
-
-if [[ "$EUID" == "0" ]]; then
-   echo "Run this script without sudo!"
-   exit 1
-fi
-
 cd $(dirname $(readlink -f $0))
+. header.sh
 
 wget -nc https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -P ~/Downloads
 

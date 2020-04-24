@@ -1,12 +1,7 @@
 #!/bin/bash
 set -e
-
-if [[ "$EUID" == "0" ]]; then
-   echo "Run this script without sudo!"
-   exit 1
-fi
-
 cd $(dirname $(readlink -f $0))
+. header.sh
 
 # adding rpm fusion
 yes | sudo rpm-ostree install --idempotent --allow-inactive \
@@ -35,12 +30,5 @@ yes | sudo rpm-ostree install --idempotent --allow-inactive \
     nmap \
     nautilus-python \
     nautilus-extensions \
-    openssl
-
-./install_flatpak.sh
-./install_snap.sh
-./install_python.sh
-./install_oh-my-zsh.sh
-
-echo "###################################"
-echo "Please, log out to apply changes!"
+    openssl \
+    stow
