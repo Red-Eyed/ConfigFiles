@@ -47,7 +47,12 @@ sudo pacman -Suy --needed --noconfirm \
     gnome-tweaks \
     icedtea-web \
     nmap \
-    stow
+    stow \
+    lrzip \
+    p7zip \
+    squashfs-tools \
+    unace \
+    unrar
 
 sudo systemctl enable --now snapd.socket
 sudo ln -sf /var/lib/snapd/snap /snap
