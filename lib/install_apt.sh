@@ -8,6 +8,7 @@ sudo apt install --yes \
     mc \
     vim \
     git \
+    git-lfs \
     zsh \
     htop \
     meld \
