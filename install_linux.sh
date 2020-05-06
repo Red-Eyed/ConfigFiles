@@ -29,7 +29,6 @@ sudo systemctl enable fstrim.timer
 # dotfiles should be first
 ./lib/install_dotfiles.sh
 
-./lib/install_flatpak.sh
 ./lib/install_snap.sh
 ./lib/install_python.sh
 ./lib/install_oh-my-zsh.sh

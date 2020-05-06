@@ -23,6 +23,10 @@ sudo apt install --yes \
     lldb \
     neofetch \
     qtcreator \
+    qbittorrent \
+    vlc \
+    pulseeffects \
+    telegram-desktop \
     earlyoom \
     network-manager-openvpn \
     sqlitebrowser \

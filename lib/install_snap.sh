@@ -3,7 +3,7 @@ set -e
 cd $(dirname $(readlink -f $0))
 . header.sh
 
-if [ x$(command -v $snap) == x ]; then
+if [ x$(command -v $snap) != x ]; then
     exit 0
 fi
 
