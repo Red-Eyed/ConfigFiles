@@ -9,7 +9,7 @@ fi
 cd $(dirname $(readlink -f $0))
 export ROOT_DIR=$PWD
 
-if [[ "$XDG_CURRENT_DESKTOP" == "GNOME" ]]; then
+if [[ "$XDG_CURRENT_DESKTOP" =~ "GNOME" ]]; then
     /bin/gsettings set org.gnome.shell.app-switcher current-workspace-only true
     /bin/gsettings set org.gnome.shell.extensions.dash-to-dock isolate-workspaces true
 fi
