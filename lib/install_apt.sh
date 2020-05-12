@@ -6,6 +6,7 @@ cd $(dirname $(readlink -f $0))
 sudo apt update
 sudo apt install --yes \
     mc \
+    tree \
     vim \
     git \
     git-lfs \
@@ -39,8 +40,9 @@ sudo apt install --yes \
     cifs-utils \
     nfs-common \
     sshfs \
-    flatpak \
-    gnome-software-plugin-flatpak \
+    hardinfo \
+    gnome-mpv \
+    gnome-clocks \
     gnome-tweaks \
     icedtea-netx \
     nmap \
