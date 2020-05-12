@@ -9,6 +9,7 @@ sudo apt install --yes \
     vim \
     git \
     git-lfs \
+    etckeeper \
     zsh \
     htop \
     meld \
@@ -25,7 +26,6 @@ sudo apt install --yes \
     neofetch \
     qtcreator \
     qbittorrent \
-    vlc \
     pulseeffects \
     telegram-desktop \
     earlyoom \
