@@ -45,6 +45,7 @@ sudo apt install --yes \
     gnome-clocks \
     gnome-tweaks \
     icedtea-netx \
-    nmap \
     python-nautilus \
-    stow
+    stow \
+    nmap \
+    net-tools
