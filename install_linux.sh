@@ -24,7 +24,10 @@ for cmd in $pkg_managers; do
 done
 
 # Enable fstrim for SSD
-sudo systemctl enable fstrim.timer
+sudo systemctl enable fstrim.timer --now
+
+# Enable avahi
+sudo systemctl enable avahi-daemon.service --now
 
 # dotfiles should be first
 ./lib/install_dotfiles.sh
