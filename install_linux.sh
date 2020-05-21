@@ -23,6 +23,10 @@ for cmd in $pkg_managers; do
     fi
 done
 
+if command -v update-alternatives > /dev/null ; then
+    sudo update-alternatives --set editor /usr/bin/vim.basic
+fi
+
 # Enable fstrim for SSD
 sudo systemctl enable fstrim.timer --now
 
