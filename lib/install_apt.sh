@@ -28,6 +28,7 @@ sudo apt install --yes \
     qtcreator \
     qbittorrent \
     pulseeffects \
+    lsp-plugins \
     telegram-desktop \
     earlyoom \
     network-manager-openvpn \
@@ -46,6 +47,8 @@ sudo apt install --yes \
     gnome-tweaks \
     icedtea-netx \
     python-nautilus \
+    nautilus-gtkhash \
     stow \
     nmap \
-    net-tools
+    net-tools \
+    lm-sensors
