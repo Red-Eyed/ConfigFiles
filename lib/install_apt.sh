@@ -12,6 +12,7 @@ sudo apt install --yes \
     git-lfs \
     etckeeper \
     zsh \
+    keepassxc \
     htop \
     meld \
     ccache \
