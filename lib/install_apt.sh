@@ -52,4 +52,6 @@ sudo apt install --yes \
     stow \
     nmap \
     net-tools \
-    lm-sensors
+    lm-sensors \
+    vainfo \
+    vdpauinfo
