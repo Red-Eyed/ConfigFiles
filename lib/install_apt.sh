@@ -54,4 +54,5 @@ sudo apt install --yes \
     net-tools \
     lm-sensors \
     vainfo \
-    vdpauinfo
+    vdpauinfo \
+    mediainfo-gui
