@@ -1,6 +1,10 @@
 #!/bin/bash
 set -e
 
+systemctl-exists() {
+  [ $(systemctl list-unit-files "${1}*" | wc -l) -gt 3 ]
+}
+
 if [[ "$EUID" == "0" ]]; then
    echo "Run this script without sudo!"
    exit 1
@@ -27,11 +31,15 @@ if command -v update-alternatives > /dev/null ; then
     sudo update-alternatives --set editor /usr/bin/vim.basic
 fi
 
+if systemctl-exists avahi-daemon.service ; then
+    sudo systemctl disable avahi-daemon.service --now
+fi
+
+sudo systemctl enable systemd-resolved --now
+sudo ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
+
 # Enable fstrim for SSD
 sudo systemctl enable fstrim.timer --now
-
-# Enable avahi
-sudo systemctl enable avahi-daemon.service --now
 
 # dotfiles should be first
 ./lib/install_dotfiles.sh
