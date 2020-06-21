@@ -46,6 +46,7 @@ sudo apt install --yes \
     gnome-mpv \
     gnome-clocks \
     gnome-tweaks \
+    gnone-user-share \
     icedtea-netx \
     python-nautilus \
     nautilus-gtkhash \
