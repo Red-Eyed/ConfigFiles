@@ -43,7 +43,6 @@ sudo apt install --yes \
     nfs-common \
     sshfs \
     hardinfo \
-    gnome-mpv \
     gnome-clocks \
     gnome-tweaks \
     gnone-user-share \
