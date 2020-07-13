@@ -16,6 +16,7 @@ sudo apt install --yes \
     htop \
     meld \
     ccache \
+    p7zip-full \
     pigz \
     patool \
     build-essential \
@@ -45,7 +46,6 @@ sudo apt install --yes \
     hardinfo \
     gnome-clocks \
     gnome-tweaks \
-    gnone-user-share \
     icedtea-netx \
     python-nautilus \
     nautilus-gtkhash \
