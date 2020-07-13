@@ -48,5 +48,8 @@ sudo systemctl enable fstrim.timer --now
 ./lib/install_python.sh
 ./lib/install_oh-my-zsh.sh
 
+neofetch
+
 echo "###################################"
+echo "Installation successfully completed."
 echo "Please, log out to apply changes!"
