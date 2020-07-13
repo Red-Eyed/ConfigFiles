@@ -18,7 +18,7 @@ source ~/miniconda3/bin/activate base
 # update conda
 yes | conda update -n base -c defaults conda
 
-VENV=default
+VENV=py38
 PYTON_VERSION=3.8
 
 if [[ ! -d ~/miniconda3/envs/$VENV ]]; then
