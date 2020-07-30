@@ -55,4 +55,7 @@ sudo apt install --yes \
     lm-sensors \
     vainfo \
     vdpauinfo \
-    mediainfo-gui
+    mediainfo-gui \
+    mediainfo \
+    ffmpeg \
+    ubuntu-restricted-extras
