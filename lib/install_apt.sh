@@ -58,4 +58,7 @@ sudo apt install --yes \
     mediainfo-gui \
     mediainfo \
     ffmpeg \
-    ubuntu-restricted-extras
+    ubuntu-restricted-extras \
+    inxi \
+    cpufrequtils
+    
