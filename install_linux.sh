@@ -47,6 +47,7 @@ sudo systemctl enable fstrim.timer --now
 ./lib/install_snap.sh
 ./lib/install_python.sh
 ./lib/install_oh-my-zsh.sh
+./lib/install_nvidia.sh
 
 neofetch
 
