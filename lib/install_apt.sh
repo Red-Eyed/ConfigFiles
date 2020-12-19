@@ -60,5 +60,6 @@ sudo apt install --yes \
     ffmpeg \
     ubuntu-restricted-extras \
     inxi \
-    cpufrequtils
-    
+    cpufrequtils \
+    vlc \
+    nvme-cli
