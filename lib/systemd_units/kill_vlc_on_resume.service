@@ -1,0 +1,12 @@
+[Unit]
+Description=Kills VLC on resume in order to fix logging flood
+
+[Service]
+Type=oneshot
+ExecStart=-/usr/bin/killall vlc
+TimeoutSec=0
+StandardOutput=syslog
+After=suspend.target
+
+[Install]
+WantedBy=multi-user.target sleep.target
