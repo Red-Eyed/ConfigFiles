@@ -63,3 +63,11 @@ sudo apt install --yes \
     cpufrequtils \
     vlc \
     nvme-cli
+
+wget -nc https://zoom.us/client/latest/zoom_amd64.deb -P ~/Downloads
+sudo dpkg -i ~/Downloads/zoom_amd64.deb
+
+wget -nc https://download.teamviewer.com/download/linux/teamviewer_amd64.deb -P ~/Downloads
+sudo dpkg -i ~/Downloads/teamviewer_amd64.deb
+
+sudo apt -f install
