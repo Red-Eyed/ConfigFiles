@@ -34,6 +34,7 @@ sudo apt install --yes \
     telegram-desktop \
     earlyoom \
     network-manager-openvpn \
+    network-manager-openvpn-gnome \
     sqlitebrowser \
     openssh-server \
     android-tools-adb \
