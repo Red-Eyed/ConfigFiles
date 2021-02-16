@@ -63,7 +63,8 @@ sudo apt install --yes \
     inxi \
     cpufrequtils \
     vlc \
-    nvme-cli
+    nvme-cli \
+    libnss-mdns
 
 wget -nc https://zoom.us/client/latest/zoom_amd64.deb -P ~/Downloads
 sudo dpkg -i ~/Downloads/zoom_amd64.deb

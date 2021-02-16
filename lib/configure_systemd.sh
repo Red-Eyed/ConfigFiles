@@ -7,10 +7,6 @@ systemctl-exists() {
   [ $(systemctl list-unit-files "${1}*" | wc -l) -gt 3 ]
 }
 
-if systemctl-exists avahi-daemon.service ; then
-    sudo systemctl disable avahi-daemon.service --now
-fi
-
 # Fix systemd-resolvd SSD
 sudo systemctl enable systemd-resolved --now
 sudo ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
