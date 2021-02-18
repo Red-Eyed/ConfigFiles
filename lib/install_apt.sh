@@ -4,6 +4,8 @@ cd $(dirname $(readlink -f $0))
 . header.sh
 
 sudo apt update
+sudo apt full-upgrade --yes
+
 sudo apt install --yes \
     mc \
     tree \
