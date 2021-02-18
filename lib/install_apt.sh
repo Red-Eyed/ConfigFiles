@@ -66,10 +66,10 @@ sudo apt install --yes \
     nvme-cli \
     libnss-mdns
 
+rm -f ~/Downloads/zoom_amd64
 wget -nc https://zoom.us/client/latest/zoom_amd64.deb -P ~/Downloads
-sudo dpkg -i ~/Downloads/zoom_amd64.deb
+sudo apt install -f -y ~/Downloads/zoom_amd64.deb
 
+rm -f ~/Downloads/teamviewer_amd64.deb
 wget -nc https://download.teamviewer.com/download/linux/teamviewer_amd64.deb -P ~/Downloads
-sudo dpkg -i ~/Downloads/teamviewer_amd64.deb
-
-sudo apt -f install
+sudo apt install -f -y ~/Downloads/teamviewer_amd64.deb
