@@ -68,7 +68,7 @@ sudo apt install --yes \
     nvme-cli \
     libnss-mdns
 
-rm -f ~/Downloads/zoom_amd64
+rm -f ~/Downloads/zoom_amd64.deb
 wget -nc https://zoom.us/client/latest/zoom_amd64.deb -P ~/Downloads
 sudo apt install -f -y ~/Downloads/zoom_amd64.deb
 
