@@ -10,7 +10,11 @@ fi
 sudo snap install pycharm-professional --classic
 sudo snap install pycharm-community --classic
 sudo snap install code --classic
-sudo snap install snap-store
+
+sudo snap install spotify
+sudo snap install slack
+sudo snap install skype
+sudo snap install discord
 
 
 sudo systemctl enable --now snapd.socket
