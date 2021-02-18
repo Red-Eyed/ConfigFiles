@@ -5,6 +5,8 @@ cd $(dirname $(readlink -f $0))
 
 sudo apt update
 sudo apt full-upgrade --yes
+sudo apt autoremove --yes
+sudo apt autoclean --yes
 
 sudo apt install --yes \
     mc \
