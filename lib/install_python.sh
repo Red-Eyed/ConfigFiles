@@ -29,9 +29,9 @@ conda deactivate
 source ~/miniconda3/bin/activate $VENV
 
 export PYTHONNOUSERSITE=1
+python -m pip install -U pip
 
-pip install --upgrade \
-    pip \
+python -m pip install --upgrade \
     pipx \
     ipython \
     jupyterlab \
@@ -40,6 +40,6 @@ pip install --upgrade \
     matplotlib \
     setuptools
 
-pipx install youtube-dl
-pipx install speedtest-cli
-pipx install kaggle
+pipx install -f youtube-dl
+pipx install -f speedtest-cli
+pipx install -f kaggle
