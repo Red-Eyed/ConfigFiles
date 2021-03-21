@@ -68,7 +68,8 @@ sudo apt install --yes \
     cpufrequtils \
     vlc \
     nvme-cli \
-    libnss-mdns
+    libnss-mdns \
+    gamemode
 
 rm -f ~/Downloads/zoom_amd64.deb
 wget -nc https://zoom.us/client/latest/zoom_amd64.deb -P ~/Downloads
