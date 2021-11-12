@@ -14,7 +14,7 @@ fi
 for cmd in $pkg_managers; do
     if [ x$(command -v $cmd) != x ]; then
         for mode in $modesl do
-            ./install_$cmd_$mode.sh
+            ./install_${cmd}_${mode}.sh
             break
         done
     fi
