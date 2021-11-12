@@ -6,6 +6,22 @@ if [[ "$EUID" == "0" ]]; then
    exit 1
 fi
 
+while getopts ":g:" opt; do
+  case $opt in
+    a) mode="$OPTARG"
+    ;;
+    \?) echo "Invalid option -$OPTARG" >&2
+    exit 1
+    ;;
+  esac
+
+  case $OPTARG in
+    -*) echo "Option $opt needs a valid argument"
+    exit 1
+    ;;
+  esac
+done
+
 cd $(dirname $(readlink -f $0))
 export ROOT_DIR=$PWD
 

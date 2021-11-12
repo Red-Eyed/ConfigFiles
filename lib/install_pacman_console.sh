@@ -19,7 +19,6 @@ sudo pacman -Suy --needed --noconfirm \
     git-lfs \
     zsh \
     htop \
-    meld \
     ccache \
     pigz \
     cmake \
@@ -29,11 +28,7 @@ sudo pacman -Suy --needed --noconfirm \
     fwupd \
     ethtool \
     neofetch \
-    qtcreator \
-    sqlitebrowser \
     android-tools \
-    gparted \
-    grub-customizer \
     ntfs-3g \
     cifs-utils \
     sshfs \
@@ -41,10 +36,7 @@ sudo pacman -Suy --needed --noconfirm \
     snapd \
     flatpak \
     gtkhash-nautilus \
-    hardinfo \
     tlpui \
-    gnome-software \
-    gnome-tweaks \
     icedtea-web \
     nmap \
     stow \
