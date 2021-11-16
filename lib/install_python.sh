@@ -2,17 +2,19 @@
 set -e
 cd $(dirname $(readlink -f $0))
 . header.sh
+
 MACHINE=$(uname -m)
+MINICONDA3=Miniconda3-latest-Linux-${MACHINE}.sh
 
-wget -nc https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-${MACHINE}.sh -P ~/Downloads
+wget -nc https://repo.continuum.io/miniconda/$MINICONDA3 -P ~/Downloads
 
-chmod +x ~/Downloads/Miniconda3-latest-Linux-${MACHINE}.sh
+chmod +x ~/Downloads/$MINICONDA3
 
 # fix for conda that relies on libffi v6
 sudo ln -sf /usr/lib/${MACHINE}-linux-gnu/libffi.so /usr/lib/${MACHINE}-linux-gnu/libffi.so.6
 
 if [[ ! -d ~/miniconda3/envs/$VENV ]]; then
-    ~/Downloads/Miniconda3-latest-Linux-${MACHINE}.sh -bf
+    ~/Downloads/$MINICONDA3 -bf
 fi
 
 source ~/miniconda3/bin/activate base
