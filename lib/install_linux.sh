@@ -6,24 +6,7 @@ if [[ "$EUID" == "0" ]]; then
    exit 1
 fi
 
-while getopts ":g:" opt; do
-  case $opt in
-    a) mode="$OPTARG"
-    ;;
-    \?) echo "Invalid option -$OPTARG" >&2
-    exit 1
-    ;;
-  esac
-
-  case $OPTARG in
-    -*) echo "Option $opt needs a valid argument"
-    exit 1
-    ;;
-  esac
-done
-
-cd $(dirname $(readlink -f $0))
-export ROOT_DIR=$PWD
+cd $ROOT_DIR
 
 for sh in `find -L $ROOT_DIR -name "*.sh"`;do
     chmod +x $sh
@@ -35,8 +18,11 @@ if [[ "$XDG_CURRENT_DESKTOP" =~ "GNOME" ]]; then
     /bin/gsettings set org.gnome.shell.extensions.dash-to-dock isolate-workspaces true || true
 fi
 
-./lib/install_system_pkgs.sh
-./lib/configure_systemd.sh
+./lib/install_system_pkgs.sh $ARGS_MODE
+
+if [ ! systemctl ]; then
+    ./lib/configure_systemd.sh
+fi
 
 # Make vim as default
 if command -v update-alternatives > /dev/null ; then

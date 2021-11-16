@@ -6,10 +6,11 @@ cd $(dirname $(readlink -f $0))
 pkg_managers="pacman apt rpm-ostree"
 
 if [ "$1" == "gui" ]; then
-    modes="console gui"
+    modes="headless gui"
 else
-    modes="console"
+    modes="headless"
 fi
+echo $modes
 
 for cmd in $pkg_managers; do
     if [ x$(command -v $cmd) != x ]; then
