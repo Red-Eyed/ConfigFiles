@@ -25,7 +25,7 @@ if __name__ == '__main__':
     ENV["ROOT_DIR"] = ROOT_DIR.as_posix()
 
     try:
-        ret = run(ROOT_DIR / "lib/install_linux.sh", env=ENV)
+        ret = run(["/bin/bash", ROOT_DIR / "lib/install_linux.sh"], env=ENV)
         sys.exit(ret.returncode)
     except KeyboardInterrupt:
         sys.exit(0)
