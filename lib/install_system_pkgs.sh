@@ -10,7 +10,6 @@ if [ "$1" == "gui" ]; then
 else
     modes="headless"
 fi
-echo $modes
 
 for cmd in $pkg_managers; do
     if [ x$(command -v $cmd) != x ]; then
