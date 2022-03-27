@@ -24,7 +24,12 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    env_args = {f"args_{k}".upper(): v for k, v in args.__dict__.items()}
+    env_args = {}
+    for k, v in args.__dict__.items():
+        if isinstance(v, bool):
+            v = str(int(v))
+
+        env_args[f"args_{k}".upper()] = v
 
     ENV.update(env_args)
     ENV["ROOT_DIR"] = ROOT_DIR.as_posix()
