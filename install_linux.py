@@ -19,21 +19,22 @@ ENV = os.environ.copy()
 if __name__ == '__main__':
     parser = ArgumentParser(prog="install_linux.py")
     parser.add_argument("--mode", help="Installation mode", choices=["gui", "headless"], default="headless")
-    parser.add_argument("--force_superuser", help="Install all from superuser. Use it for docker builds, for example", action="store_true")
+    parser.add_argument("--force_superuser", help="Install all from superuser. Use it for docker builds, for example",
+                        action="store_true")
 
     args = parser.parse_args()
 
-    args = {f"args_{k}".upper(): v for k, v in args.__dict__.items()}
+    env_args = {f"args_{k}".upper(): v for k, v in args.__dict__.items()}
 
-    ENV.update(args)
+    ENV.update(env_args)
     ENV["ROOT_DIR"] = ROOT_DIR.as_posix()
 
-    is_superuser = os.geteuid() == 0
+    is_superuser = os.getuid() == 0
     cmd = ["/bin/bash", (ROOT_DIR / "lib/install_linux.sh").as_posix()]
 
     if is_superuser:
         if args.force_superuser:
-            fake_sudo =  ROOT_DIR / "lib/sudo"
+            fake_sudo = ROOT_DIR / "lib/sudo"
             fake_sudo.chmod(fake_sudo.stat().st_mode | stat.S_IEXEC)
             ENV["PATH"] = f"{fake_sudo.parent}{os.pathsep}{ENV['PATH']}"
         else:
