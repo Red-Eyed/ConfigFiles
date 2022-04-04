@@ -1,11 +1,6 @@
 #!/bin/bash
 set -e
 
-if [[ "$EUID" == "0" ]]; then
-   echo "Run this script without sudo!"
-   exit 1
-fi
-
 cd $ROOT_DIR
 
 for sh in `find -L $ROOT_DIR -name "*.sh"`;do
@@ -32,7 +27,7 @@ fi
 # dotfiles should be the first
 ./lib/install_dotfiles.sh
 
-./lib/install_snap.sh
+# ./lib/install_snap.sh
 ./lib/install_python.sh
 ./lib/install_oh-my-zsh.sh
 

@@ -1,0 +1,51 @@
+# Auto normalize all files which appear to be text files.
+*        text=auto
+
+# Auto normalize files which are explicitly text
+*.sh     text
+*.cfg    text
+*.txt    text
+*.csv    text
+*.md     text
+*.yml    text
+*.yaml   text
+*.json   text
+*.html   text
+*.py     text
+*.ipynb  text
+
+# Files which are explicitly binary
+*.gz     binary !eol
+*.xz     binary !eol
+*.bz2    binary !eol
+*.tar    binary !eol
+*.png    binary !eol
+*.jpg    binary !eol
+*.gif    binary !eol
+*.ico    binary !eol
+*.pth    binary !eol
+*.nano   binary !eol
+*.so     binary !eol
+*.pyd    binary !eol
+
+# Files normalized to always keep LF line endings
+*.sh              eol=lf
+*.cfg             eol=lf
+*.txt             eol=lf
+*.csv             eol=lf
+*.md              eol=lf
+*.yml             eol=lf
+*.yaml            eol=lf
+*.json            eol=lf
+*.html            eol=lf
+*.py              eol=lf
+*.ipynb           eol=lf
+Makefile          eol=lf
+
+# Files normalized to always keep crlf line endings
+*.vcxproj         eol=crlf
+*.vcxproj.filters eol=crlf
+*.sln             eol=crlf
+*.rc     text     eol=crlf
+*.inf    text     eol=crlf
+*.bat    text     eol=crlf
