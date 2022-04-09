@@ -2,7 +2,6 @@
 set -e
 
 cd $ROOT_DIR
-. /etc/environment
 
 for sh in `find -L $ROOT_DIR -name "*.sh"`;do
     chmod +x $sh

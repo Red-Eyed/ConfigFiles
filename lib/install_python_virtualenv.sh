@@ -4,6 +4,10 @@ cd $(dirname $(readlink -f $0))
 . header.sh
 
 _VENV_PATH="$HOME/python_envs/default"
+if [ -x "$(command -v deactivate)" ]; then
+    deactivate
+fi
+
 python3 -m pip install virtualenv
 python3 -m virtualenv --clear \
                       --always-copy \
