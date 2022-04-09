@@ -3,6 +3,4 @@ set -e
 cd $(dirname $(readlink -f $0))
 . header.sh
 
-cd $ROOT_DIR/dotfiles
-
-stow --adopt -d $PWD -t $HOME -S *
+python3 $ROOT_DIR/lib stow --src=$ROOT_DIR/dotfiles --dst=$HOME

@@ -67,12 +67,11 @@ HIST_STAMPS="yyyy/mm/dd"
 plugins=(
   git
   pip
-  docker
   colorize
   colored-man-pages
   rsync
   extract
-  copydir
+  copypath
   copyfile
 )
 
