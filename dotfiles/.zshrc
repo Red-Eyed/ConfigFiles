@@ -122,9 +122,9 @@ setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording en
 setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
 setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 
-export PYTHONNOUSERSITE=1
-export PATH=$PATH:$HOME/.local/bin:/snap/bin
-source $HOME/miniconda3/bin/activate py38
+_PYTHON_ENV=$HOME/python_envs/default
+source $_PYTHON_ENV/bin/activate
+export PATH=$PATH:$_PYTHON_ENV/bin:/snap/bin
 
 autoload bashcompinit
 bashcompinit
