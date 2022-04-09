@@ -11,7 +11,7 @@ virtualenv --clear \
            --download \
            "$_VENV_PATH"
 
-. "$_VENV_PATH/activate"
+. "$_VENV_PATH/bin/activate"
 python -m pip install
     pipx \
     ipython \
