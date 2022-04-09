@@ -37,6 +37,6 @@ if __name__ == "__main__":
 
             print(msg)
         else:
-            dst_f.link_to(src_f)
+            dst_f.symlink_to(src_f)
 
 
