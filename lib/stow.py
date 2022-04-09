@@ -16,11 +16,11 @@ if __name__ == "__main__":
     dst: Path = args.dst.resolve().absolute()
 
     for src_f in src.rglob("*"):
+        if src_f.is_dir():
+            continue
+
         dst_f = Path(src_f.as_posix().replace(src.as_posix(), dst.as_posix()))
-        if dst_f.is_dir():
-            dst_f.mkdir(exist_ok=True, parents=True)
-        else:
-            dst_f.parent.mkdir(exist_ok=True, parents=True)
+        dst_f.parent.mkdir(exist_ok=True, parents=True)
 
         if dst_f.is_symlink():
             dst_f.unlink()
