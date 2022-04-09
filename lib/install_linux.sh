@@ -31,7 +31,7 @@ if [ ! systemctl ]; then
     ./lib/install_snap.sh
 fi
 
-./lib/install_python.sh
+./lib/install_python_virtualenv.sh
 ./lib/install_oh-my-zsh.sh
 
 neofetch
