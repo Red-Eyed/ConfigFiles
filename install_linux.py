@@ -1,17 +1,15 @@
-#!/usr/bin/env python3
+#!/bin/python3
 # -*- coding: utf-8 -*-
 
 __author__ = "Vadym Stupakov"
 __email__ = "vadim.stupakov@gmail.com"
 
-from subprocess import run
-from shutil import which
-from argparse import ArgumentParser
-import os
-from pathlib import Path
-import sys
 import os
 import stat
+import sys
+from argparse import ArgumentParser
+from pathlib import Path
+from subprocess import run
 
 ROOT_DIR = Path(__file__).absolute().parent.resolve()
 ENV = os.environ.copy()
@@ -51,5 +49,3 @@ if __name__ == '__main__':
         sys.exit(ret.returncode)
     except KeyboardInterrupt:
         sys.exit(0)
-
-

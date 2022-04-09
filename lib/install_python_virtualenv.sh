@@ -5,7 +5,8 @@ cd $(dirname $(readlink -f $0))
 
 _VENV_PATH="$HOME/python_envs/default"
 python3 -m pip install virtualenv
-virtualenv --always-copy \
+virtualenv --clear \
+           --always-copy \
            --seeder=pip \
            --download \
            "$_VENV_PATH"
