@@ -5,14 +5,14 @@ cd $(dirname $(readlink -f $0))
 
 _VENV_PATH="$HOME/python_envs/default"
 python3 -m pip install virtualenv
-virtualenv --clear \
-           --always-copy \
-           --seeder=pip \
-           --download \
-           "$_VENV_PATH"
+python3 -m virtualenv --clear \
+                      --always-copy \
+                      --seeder=pip \
+                      --download \
+                      "$_VENV_PATH"
 
 . "$_VENV_PATH/bin/activate"
-python -m pip install \
+pip install \
     pipx \
     ipython \
     jupyterlab \
