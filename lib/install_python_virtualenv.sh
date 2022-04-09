@@ -24,7 +24,3 @@ pip install \
     pandas \
     matplotlib \
     setuptools
-
-pipx install -f youtube-dl
-pipx install -f speedtest-cli
-pipx install -f kaggle
