@@ -22,6 +22,9 @@ if __name__ == "__main__":
         else:
             dst_f.parent.mkdir(exist_ok=True, parents=True)
 
+        if dst_f.is_symlink():
+            dst_f.unlink()
+
         if dst_f.exists():
             msg = f"{dst_f} already exists!"
             msg += " {}"
