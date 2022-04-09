@@ -11,7 +11,7 @@ virtualenv --always-copy \
            "$_VENV_PATH"
 
 . "$_VENV_PATH/bin/activate"
-python -m pip install
+python -m pip install \
     pipx \
     ipython \
     jupyterlab \
