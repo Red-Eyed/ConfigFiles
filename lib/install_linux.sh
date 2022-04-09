@@ -27,7 +27,10 @@ fi
 # dotfiles should be the first
 ./lib/install_dotfiles.sh
 
-# ./lib/install_snap.sh
+if [ ! systemctl ]; then
+    ./lib/install_snap.sh
+fi
+
 ./lib/install_python.sh
 ./lib/install_oh-my-zsh.sh
 
