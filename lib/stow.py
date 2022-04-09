@@ -31,7 +31,7 @@ if __name__ == "__main__":
             if args.force:
                 msg = msg.format("Overwriting.")
                 dst_f.rename(dst_f.as_posix() + ".backup")
-                dst_f.link_to(src_f)
+                dst_f.symlink_to(src_f)
             else:
                 msg = msg.format("Skipping.")
 
