@@ -45,7 +45,8 @@ sudo pacman -Suy --needed --noconfirm \
     p7zip \
     squashfs-tools \
     unace \
-    unrar
+    unrar \
+    python3-pip
 
 sudo systemctl enable --now snapd.socket
 sudo ln -sf /var/lib/snapd/snap /snap

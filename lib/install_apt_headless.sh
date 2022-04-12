@@ -53,3 +53,4 @@ sudo apt install --yes \
     cpufrequtils \
     nvme-cli \
     libnss-mdns \
+    python3-pip
