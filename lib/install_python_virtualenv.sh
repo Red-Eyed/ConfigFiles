@@ -5,6 +5,7 @@ cd $(dirname $(readlink -f $0))
 
 _VENV_PATH="$HOME/python_envs/default"
 
+export PYTHONNOUSERSITE=0
 
 /usr/bin/python3 -m pip install virtualenv
 /usr/bin/python3 -m virtualenv  --clear \
