@@ -18,6 +18,7 @@ sudo pacman -Suy --needed --noconfirm \
     git \
     git-lfs \
     zsh \
+    tmux \
     htop \
     ccache \
     pigz \

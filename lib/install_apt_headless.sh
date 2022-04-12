@@ -17,6 +17,7 @@ sudo apt install --yes \
     etckeeper \
     zsh \
     htop \
+    tmux \
     ncdu \
     ccache \
     p7zip-full \
