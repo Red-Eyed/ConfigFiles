@@ -15,7 +15,7 @@ fi
 
 ./lib/install_system_pkgs.sh $ARGS_MODE
 
-if [ ! systemctl ]; then
+if [ systemctl ]; then
     ./lib/configure_systemd.sh
 fi
 
@@ -27,7 +27,7 @@ fi
 # dotfiles should be the first
 ./lib/install_dotfiles.sh
 
-if [ ! systemctl ]; then
+if [ systemctl ]; then
     ./lib/install_snap.sh
 fi
 
