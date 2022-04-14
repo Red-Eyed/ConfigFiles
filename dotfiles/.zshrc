@@ -135,3 +135,4 @@ export CXX=clang++
 # Remove duplicates in $PATH by changing path type from list to set
 typeset -aU path
 
+SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
