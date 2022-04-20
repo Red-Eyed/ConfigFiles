@@ -136,3 +136,5 @@ export CXX=clang++
 typeset -aU path
 
 SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
+
+alias tmux_attach="tmux new-session -A -s main"
