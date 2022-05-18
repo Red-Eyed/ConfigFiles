@@ -7,8 +7,8 @@ _VENV_PATH="$HOME/python_envs/default"
 
 export PYTHONNOUSERSITE=0
 
-/usr/bin/python3 -m pip install virtualenv
-/usr/bin/python3 -m virtualenv  --clear \
+python3 -m pip install virtualenv
+python3 -m virtualenv  --clear \
                                 --always-copy \
                                 --seeder=pip \
                                 --download \
@@ -23,4 +23,4 @@ python3 -m pip install \
     numpy \
     pandas \
     matplotlib \
-    setuptools
+    # setuptools

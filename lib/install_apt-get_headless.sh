@@ -3,12 +3,14 @@ set -e
 cd $(dirname $(readlink -f $0))
 . header.sh
 
-sudo apt update
-sudo apt full-upgrade --yes
-sudo apt autoremove --yes
-sudo apt autoclean --yes
+export DEBIAN_FRONTEND=noninteractive
 
-sudo apt install --yes \
+sudo apt-get update
+sudo apt-get upgrade --yes
+sudo apt-get autoremove --yes
+sudo apt-get autoclean --yes
+
+sudo apt-get install --yes \
     mc \
     tree \
     vim \
@@ -32,16 +34,12 @@ sudo apt install --yes \
     lldb \
     neofetch \
     earlyoom \
-    openssh-server \
     android-tools-adb \
     mtp-tools \
     ntfs-3g \
-    cifs-utils \
-    nfs-common \
     sshfs \
     icedtea-netx \
     stow \
-    nmap \
     net-tools \
     lm-sensors \
     vainfo \
@@ -52,5 +50,4 @@ sudo apt install --yes \
     inxi \
     cpufrequtils \
     nvme-cli \
-    libnss-mdns \
     python3-pip
