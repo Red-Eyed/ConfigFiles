@@ -54,4 +54,5 @@ sudo apt install --yes \
     nvme-cli \
     libnss-mdns \
     python3-pip \
+    python3-venv \
     keychain
