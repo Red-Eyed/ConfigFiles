@@ -7,7 +7,7 @@ sudo apt-get update
 sudo apt-get autoremove --yes
 sudo apt-get autoclean --yes
 
-sudo apt-get install --ignore-missing --yes \
+sudo apt-get install --yes \
     mc \
     tree \
     vim \
