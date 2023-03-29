@@ -3,12 +3,11 @@ set -e
 cd $(dirname $(readlink -f $0))
 . header.sh
 
-sudo apt update
-sudo apt full-upgrade --yes
-sudo apt autoremove --yes
-sudo apt autoclean --yes
+sudo apt-get update
+sudo apt-get autoremove --yes
+sudo apt-get autoclean --yes
 
-sudo apt install --yes \
+sudo apt-get install --yes \
     mc \
     tree \
     vim \
