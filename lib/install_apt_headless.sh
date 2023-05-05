@@ -33,8 +33,6 @@ sudo apt-get install --yes \
     earlyoom \
     android-tools-adb \
     mtp-tools \
-    ntfs-3g \
-    cifs-utils \
     sshfs \
     icedtea-netx \
     stow \
@@ -48,6 +46,5 @@ sudo apt-get install --yes \
     inxi \
     cpufrequtils \
     nvme-cli \
-    libnss-mdns \
     python3-pip \
     python3-venv
