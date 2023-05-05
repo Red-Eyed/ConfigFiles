@@ -36,11 +36,9 @@ sudo apt-get install --yes \
     mtp-tools \
     ntfs-3g \
     cifs-utils \
-    nfs-common \
     sshfs \
     icedtea-netx \
     stow \
-    nmap \
     net-tools \
     lm-sensors \
     vainfo \
@@ -53,5 +51,4 @@ sudo apt-get install --yes \
     nvme-cli \
     libnss-mdns \
     python3-pip \
-    python3-venv \
-    keychain
+    python3-venv
