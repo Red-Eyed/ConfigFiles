@@ -31,7 +31,6 @@ sudo apt-get install --yes \
     lldb \
     neofetch \
     earlyoom \
-    openssh-server \
     android-tools-adb \
     mtp-tools \
     ntfs-3g \
