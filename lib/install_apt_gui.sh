@@ -8,7 +8,7 @@ sudo apt full-upgrade --yes
 sudo apt autoremove --yes
 sudo apt autoclean --yes
 
-sudo apt install --yes \
+sudo apt install added --ignore-missing --yes \
     keepassxc \
     meld \
     qtcreator \
