@@ -1,7 +1,5 @@
 #!/bin/bash
-set -e
 cd $(dirname $(readlink -f $0))
-. header.sh
 
 sudo apt-get update
 sudo apt-get autoremove --yes
@@ -53,7 +51,7 @@ packages="
     nvme-cli
     libnss-mdns
     python3-pip
-    python3-venv
+    python3-virtualenv
     keychain
 "
 
