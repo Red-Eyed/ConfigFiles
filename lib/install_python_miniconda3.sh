@@ -33,16 +33,3 @@ source ~/miniconda3/bin/activate $VENV
 
 export PYTHONNOUSERSITE=1
 python -m pip install -U pip
-
-python -m pip install --upgrade \
-    pipx \
-    ipython \
-    jupyterlab \
-    numpy \
-    pandas \
-    matplotlib \
-    setuptools
-
-pipx install -f youtube-dl
-pipx install -f speedtest-cli
-pipx install -f kaggle
