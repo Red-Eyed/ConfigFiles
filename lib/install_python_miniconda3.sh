@@ -11,7 +11,7 @@ wget -nc https://repo.continuum.io/miniconda/$MINICONDA3 -P ~/Downloads
 chmod +x ~/Downloads/$MINICONDA3
 
 # fix for conda that relies on libffi v6
-sudo ln -sf /usr/lib/${MACHINE}-linux-gnu/libffi.so /usr/lib/${MACHINE}-linux-gnu/libffi.so.6
+# sudo ln -sf /usr/lib/${MACHINE}-linux-gnu/libffi.so /usr/lib/${MACHINE}-linux-gnu/libffi.so.6
 
 if [[ ! -d ~/miniconda3/envs/$VENV ]]; then
     ~/Downloads/$MINICONDA3 -bf
