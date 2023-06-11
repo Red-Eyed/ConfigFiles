@@ -40,16 +40,11 @@ packages="
     stow
     nmap
     net-tools
-    lm-sensors
-    vainfo
-    vdpauinfo
     mediainfo
     ffmpeg
-    ubuntu-restricted-extras
     inxi
     cpufrequtils
     nvme-cli
-    libnss-mdns
     python3-pip
     python3-virtualenv
     keychain
