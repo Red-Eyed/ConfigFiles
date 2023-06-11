@@ -13,6 +13,7 @@ if [[ "$XDG_CURRENT_DESKTOP" =~ "GNOME" ]]; then
 fi
 
 ./lib/install_system_pkgs.sh $ARGS_MODE
+./lib/install_appimages.sh
 
 if [ systemctl ]; then
     ./lib/configure_systemd.sh

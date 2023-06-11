@@ -125,6 +125,7 @@ setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 _PYTHON_ENV=$HOME/python_envs/default
 source $_PYTHON_ENV/bin/activate
 export PATH=$PATH:$_PYTHON_ENV/bin:/snap/bin
+export PATH=$PATH:$HOME/appimages
 
 autoload bashcompinit
 bashcompinit
