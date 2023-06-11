@@ -48,6 +48,7 @@ packages="
     python3-pip
     python3-virtualenv
     keychain
+    libfuse2
 "
 
 for pkg in $packages;
