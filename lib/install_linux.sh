@@ -31,6 +31,10 @@ if [ systemctl ]; then
     ./lib/install_snap.sh
 fi
 
+if [ systemctl ]; then
+    bash ./lib/configure_sysfs.sh
+fi
+
 ./lib/install_python_virtualenv.sh
 ./lib/install_oh-my-zsh.sh
 

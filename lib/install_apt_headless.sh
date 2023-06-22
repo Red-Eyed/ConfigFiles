@@ -49,6 +49,7 @@ packages="
     python3-virtualenv
     keychain
     libfuse2
+    sysfsutils
 "
 
 for pkg in $packages;
