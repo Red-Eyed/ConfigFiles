@@ -32,7 +32,7 @@ if [ systemctl ]; then
 fi
 
 if [ systemctl ]; then
-    bash ./lib/configure_sysfs.sh
+    bash ./lib/configure_zram.sh
 fi
 
 ./lib/install_python_virtualenv.sh
