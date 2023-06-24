@@ -24,7 +24,3 @@ python3 -m pip install \
     pandas \
     matplotlib \
     setuptools
-
-/usr/bin/python3 -m pipx install -f speedtest-cli
-/usr/bin/python3 -m pipx install -f kaggle
-/usr/bin/python3 -m pipx install -f git-autoshare
