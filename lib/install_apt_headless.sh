@@ -18,6 +18,7 @@ packages="
     ncdu
     ccache
     p7zip-full
+    zstd
     pigz
     patool
     build-essential
