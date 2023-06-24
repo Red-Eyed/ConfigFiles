@@ -51,7 +51,6 @@ packages="
     keychain
     libfuse2
     sysfsutils
-    zram-tools
 "
 
 for pkg in $packages;
