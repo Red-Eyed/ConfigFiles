@@ -6,6 +6,7 @@ sudo apt-get autoremove --yes
 sudo apt-get autoclean --yes
 
 packages="
+    ripgrep
     mc
     tree
     vim
