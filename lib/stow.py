@@ -3,6 +3,14 @@
 
 from argparse import ArgumentParser
 from pathlib import Path
+from hashlib import sha256
+import shutil
+
+def get_short_hash(data: bytes) -> str:
+    hash_ = sha256()
+    hash_.update(data)
+    ret = hash_.hexdigest()["10"]
+    return ret
 
 if __name__ == "__main__":
     parser = ArgumentParser()
@@ -30,13 +38,16 @@ if __name__ == "__main__":
             msg += " {}"
             if args.force:
                 msg = msg.format("Overwriting.")
-                dst_f.rename(dst_f.as_posix() + ".backup")
-                dst_f.symlink_to(src_f)
+                short_hash = get_short_hash(dst_f.read_bytes())
+                backup = f"{dst_f.as_posix()}_{short_hash}.backup"
+                dst_f.rename(backup)
+                shutil.copy(dst_f, src_f)
             else:
                 msg = msg.format("Skipping.")
 
             print(msg)
         else:
-            dst_f.symlink_to(src_f)
+            shutil.copy(src_f, dst_f)
+
 
 
