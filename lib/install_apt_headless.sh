@@ -8,6 +8,7 @@ sudo apt-get autoclean --yes
 packages="
     ripgrep
     mc
+    micro
     tree
     vim
     git
