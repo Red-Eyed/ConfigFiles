@@ -35,7 +35,7 @@ if [ systemctl ]; then
     bash ./lib/install_zram-generator.sh
 fi
 
-./lib/install_python_virtualenv.sh
+./lib/install_python_venv.sh
 ./lib/install_oh-my-zsh.sh
 
 neofetch
