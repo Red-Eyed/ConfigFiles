@@ -2,7 +2,7 @@
 
 ## How to install
 
-Clone repository:  
+Clone repository:
 `git clone https://github.com/Red-Eyed/ConfigFiles`
 
 ### Common install
