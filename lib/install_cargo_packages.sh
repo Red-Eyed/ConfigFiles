@@ -45,3 +45,9 @@ cargo install --locked tokei
 cargo install --git https://github.com/fish-shell/fish-shell --tag 4.0.0
 
 cargo install coreutils
+
+# safer alternative to rm
+cargo install thashy
+
+# nvtop like
+cargo install nviwatch
