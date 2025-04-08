@@ -43,3 +43,5 @@ cargo install --locked tokei
 
 # Install fish shell
 cargo install --git https://github.com/fish-shell/fish-shell --tag 4.0.0
+
+cargo install coreutils
