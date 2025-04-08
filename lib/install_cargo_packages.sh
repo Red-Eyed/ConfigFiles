@@ -15,31 +15,31 @@ else
 fi
 
 # Install yazi-fm (core file manager engine)
-cargo install --locked yazi-fm
+cargo install yazi-fm
 
 # Install yazi-cli (terminal frontend for yazi-fm)
-cargo install --locked yazi-cli
+cargo install yazi-cli
 
 # Install ripgrep (fast recursive grep alternative)
-cargo install --locked ripgrep
+cargo install ripgrep
 
 # Install fd (user-friendly alternative to `find`)
-cargo install --locked fd-find
+cargo install fd-find
 
 # Install bat (enhanced `cat` with syntax highlighting)
-cargo install --locked bat
+cargo install bat
 
 # Install exa (modern `ls` replacement with Git integration)
-cargo install --locked exa
+cargo install exa
 
 # Install dust (intuitive disk usage analyzer)
-cargo install --locked du-dust
+cargo install du-dust
 
 # Install hyperfine (command-line benchmarking tool)
-cargo install --locked hyperfine
+cargo install hyperfine
 
 # Install tokei (code statistics generator)
-cargo install --locked tokei
+cargo install tokei
 
 # Install fish shell
 cargo install --git https://github.com/fish-shell/fish-shell --tag 4.0.0
