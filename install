@@ -16,7 +16,7 @@ ENV = os.environ.copy()
 
 if __name__ == '__main__':
     scripts = {s.stem:s for s in (ROOT_DIR / "lib").iterdir() if s.name.startswith("install_")}
-    parser = ArgumentParser(prog="install_linux.py")
+    parser = ArgumentParser(prog="install")
     parser.add_argument("--script", help="script to run", choices=scripts.keys(), default="install_linux")
     parser.add_argument("--mode", help="Installation mode", choices=["gui", "headless"], default="headless")
     parser.add_argument("--force_superuser", help="Install all from superuser. Use it for docker builds, for example",
