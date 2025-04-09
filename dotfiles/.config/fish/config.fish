@@ -2,10 +2,10 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
-if test -z "$SSH_ENV"
-    set -xg SSH_ENV $HOME/.ssh/environment
+function setup_ssh_agent
+    for line in (keychain --eval id_rsa)
+        eval $line
+    end
 end
 
-if not __ssh_agent_is_started
-    __ssh_agent_start
-end
+setup_ssh_agent
