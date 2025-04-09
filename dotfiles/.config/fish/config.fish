@@ -2,6 +2,16 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
+## ls to exa aliases
+if type -q exa
+    # Use exa as a better ls replacement
+    alias ls='exa --group-directories-first --color=always'
+    alias ll='exa -l --group-directories-first --color=always'
+    alias la='exa -la --group-directories-first --color=always'
+    alias lt='exa -lT --level=2 --group-directories-first --color=always'
+    alias l.='exa -la --group-directories-first --color=always | grep "^\."'
+end
+
 function setup_ssh_agent
     # Check if keychain is installed and in PATH
     if not type -q keychain
