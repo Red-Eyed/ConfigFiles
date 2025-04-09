@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 cd $(dirname $(readlink -f $0))
 
 sudo apt-get update
@@ -28,7 +28,7 @@ packages="
     ninja-build
     g++
     clang-format
-    clang-tidy 
+    clang-tidy
     clang-tools
     clang
     clangd
@@ -41,7 +41,7 @@ packages="
     liblldb-dev
     libllvm-ocaml-dev
     libomp-dev
-    libomp5 
+    libomp5
     lld
     lldb
     llvm-dev

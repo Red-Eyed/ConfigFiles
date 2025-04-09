@@ -14,15 +14,31 @@ from subprocess import run
 ROOT_DIR = Path(__file__).absolute().parent.resolve()
 ENV = os.environ.copy()
 
-if __name__ == '__main__':
-    scripts = {s.stem:s for s in (ROOT_DIR / "lib").iterdir() if s.name.startswith("install_")}
+if __name__ == "__main__":
+    scripts = {
+        s.stem: s for s in (ROOT_DIR / "lib").iterdir() if s.name.startswith("install_")
+    }
     parser = ArgumentParser(prog="install")
-    parser.add_argument("--script", help="script to run", choices=scripts.keys(), default="install_linux")
-    parser.add_argument("--mode", help="Installation mode", choices=["gui", "headless"], default="headless")
-    parser.add_argument("--force_superuser", help="Install all from superuser. Use it for docker builds, for example",
-                        action="store_true")
+    parser.add_argument(
+        "-s",
+        "--script",
+        help="script to run",
+        choices=scripts.keys(),
+        default="install_linux",
+    )
+    parser.add_argument(
+        "--mode",
+        help="Installation mode",
+        choices=["gui", "headless"],
+        default="headless",
+    )
+    parser.add_argument(
+        "--force_superuser",
+        help="Install all from superuser. Use it for docker builds, for example",
+        action="store_true",
+    )
 
-    args = parser.parse_args()
+    args, extra_args = parser.parse_known_args()
 
     env_args = {}
     for k, v in args.__dict__.items():
@@ -35,7 +51,8 @@ if __name__ == '__main__':
     ENV["ROOT_DIR"] = ROOT_DIR.as_posix()
 
     is_superuser = os.getuid() == 0
-    cmd = ["/bin/bash", (scripts[args.script]).as_posix()]
+    cmd = ["/bin/bash", (scripts[args.script]).as_posix()] + extra_args[1:]
+    print(cmd)
 
     if is_superuser:
         if args.force_superuser:
