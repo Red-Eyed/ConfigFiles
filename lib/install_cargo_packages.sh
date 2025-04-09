@@ -42,7 +42,7 @@ cargo install hyperfine
 cargo install tokei
 
 # Install fish shell
-cargo install --git https://github.com/fish-shell/fish-shell --tag 4.0.0
+cargo install --git https://github.com/fish-shell/fish-shell --tag 4.0.1
 
 cargo install coreutils
 
