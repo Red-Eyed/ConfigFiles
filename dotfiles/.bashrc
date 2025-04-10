@@ -116,3 +116,5 @@ if ! shopt -oq posix; then
   fi
 fi
 . "$HOME/.cargo/env"
+
+eval "$(keychain --eval id_rsa)"
