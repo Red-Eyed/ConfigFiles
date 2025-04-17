@@ -122,3 +122,17 @@ export PATH=$HOME/.cargo/bin/:$PATH
 . "$HOME/.cargo/env"
 
 eval "$(keychain --eval id_rsa)"
+
+# Function to safely switch to Fish in interactive shells
+start_fish_if_interactive() {
+    # Only proceed if this is an interactive shell
+    if [[ $- == *i* ]]; then
+        # Check if fish exists in PATH
+        if command -v fish >/dev/null; then
+            # Try launching fish, but fallback to bash if it fails
+            exec fish || echo "[.bashrc] ⚠️ Fish failed to launch, staying in Bash."
+        fi
+    fi
+}
+
+start_fish_if_interactive
