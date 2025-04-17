@@ -16,6 +16,17 @@ else
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path
 fi
 
+# add sccache
+cargo install sccache
+
+# Use sccache if available
+if command -v sccache >/dev/null; then
+    export RUSTC_WRAPPER="$(command -v sccache)"
+    echo "✅ Using sccache for Rust builds: $RUSTC_WRAPPER"
+else
+    echo "⚠️ sccache not found, building without compiler cache"
+fi
+
 # Install yazi-fm (core file manager engine)
 cargo install yazi-fm
 
