@@ -8,6 +8,7 @@ cd $(dirname $(readlink -f $0))
 export PATH=$HOME/.cargo/bin:$PATH
 export RUST_BACKTRACE=1
 
+# install cargo
 if command -v rustup >/dev/null 2>&1; then
     echo "Rustup is already installed. Running update..."
     rustup update
@@ -16,8 +17,20 @@ else
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path
 fi
 
+
+cargo_install() {
+    if ! command -v cargo >/dev/null; then
+        echo "❌ cargo not found in PATH" >&2
+        return 1
+    fi
+
+    # Always use --locked to enforce Cargo.lock
+    cargo_install --locked "$@"
+}
+
+
 # add sccache
-cargo install sccache
+cargo_install sccache
 
 # Use sccache if available
 if command -v sccache >/dev/null; then
@@ -28,39 +41,39 @@ else
 fi
 
 # Install yazi-fm (core file manager engine)
-cargo install yazi-fm
+cargo_install yazi-fm
 
 # Install yazi-cli (terminal frontend for yazi-fm)
-cargo install yazi-cli
+cargo_install yazi-cli
 
 # Install ripgrep (fast recursive grep alternative)
-cargo install ripgrep
+cargo_install ripgrep
 
 # Install fd (user-friendly alternative to `find`)
-cargo install fd-find
+cargo_install fd-find
 
 # Install bat (enhanced `cat` with syntax highlighting)
-cargo install bat
+cargo_install bat
 
 # Install exa (modern `ls` replacement with Git integration)
-cargo install exa
+cargo_install exa
 
 # Install dust (intuitive disk usage analyzer)
-cargo install du-dust
+cargo_install du-dust
 
 # Install hyperfine (command-line benchmarking tool)
-cargo install hyperfine
+cargo_install hyperfine
 
 # Install tokei (code statistics generator)
-cargo install tokei
+cargo_install tokei
 
 # Install fish shell
-cargo install --git https://github.com/fish-shell/fish-shell --tag 4.0.1
+cargo_install --git https://github.com/fish-shell/fish-shell --tag 4.0.1
 
-cargo install coreutils
+cargo_install coreutils
 
 # safer alternative to rm
-cargo install trashy
+cargo_install trashy
 
 # nvtop like
-cargo install nviwatch
+cargo_install nviwatch

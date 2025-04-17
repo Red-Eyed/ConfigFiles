@@ -6,6 +6,8 @@ sudo apt-get autoremove --yes
 sudo apt-get autoclean --yes
 
 packages="
+    openssl
+    pkg-config
     mc
     micro
     tree
