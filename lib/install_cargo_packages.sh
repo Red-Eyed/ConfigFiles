@@ -13,7 +13,7 @@ if command -v rustup >/dev/null 2>&1; then
     rustup update
 else
     echo "Rustup not found. Installing rustup..."
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path
 fi
 
 # Install yazi-fm (core file manager engine)
