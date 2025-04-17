@@ -6,7 +6,6 @@ sudo apt-get autoremove --yes
 sudo apt-get autoclean --yes
 
 packages="
-    ripgrep
     mc
     micro
     tree
@@ -15,7 +14,9 @@ packages="
     git-lfs
     etckeeper
     zsh
+    fish
     htop
+    nvtop
     tmux
     ncdu
     ccache
@@ -32,25 +33,13 @@ packages="
     clang-tools
     clang
     clangd
-    libc++-dev
-    libc++1
-    libc++abi-dev
-    libc++abi1
-    libclang-dev
-    libclang1
-    liblldb-dev
-    libllvm-ocaml-dev
-    libomp-dev
-    libomp5
     lld
     lldb
     llvm-dev
     llvm-runtime
     llvm python3-clang
     neofetch
-    earlyoom
     openssh-server
-    android-tools-adb
     mtp-tools
     ntfs-3g
     cifs-utils
@@ -65,8 +54,6 @@ packages="
     inxi
     cpufrequtils
     nvme-cli
-    python3-pip
-    python3-virtualenv
     keychain
     libfuse2
     sysfsutils
