@@ -5,9 +5,6 @@ set +e
 cd $(dirname $(readlink -f $0))
 . header.sh
 
-export PATH=$HOME/.cargo/bin:$PATH
-export RUST_BACKTRACE=1
-
 # install cargo
 if command -v rustup >/dev/null 2>&1; then
     echo "Rustup is already installed. Running update..."
@@ -16,6 +13,9 @@ else
     echo "Rustup not found. Installing rustup..."
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path
 fi
+
+export PATH=$HOME/.cargo/bin:$PATH
+export RUST_BACKTRACE=1
 
 
 cargo_install() {
