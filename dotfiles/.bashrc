@@ -118,10 +118,16 @@ fi
 
 ############### FUNCTIONS ##################################################
 
-start_keychain() {
-    if command -v keychain >/dev/null; then
-        eval "$(keychain --eval id_rsa 2>/dev/null)" || \
-            echo "[.bashrc] ⚠️ keychain failed to initialize."
+# Function to safely initialize SSH key via keychain in interactive shells
+start_keychain_if_interactive() {
+    # Only run in interactive shell
+    if [[ $- == *i* ]]; then
+        # Check if keychain is available
+        if command -v keychain >/dev/null; then
+            # Try to eval keychain setup, fallback silently if it fails
+            eval "$(keychain --eval id_rsa 2>/dev/null)" || \
+                echo "[.bashrc] ⚠️ keychain failed to initialize."
+        fi
     fi
 }
 
@@ -142,5 +148,5 @@ start_fish_if_interactive() {
 export PATH=$HOME/.local/bin/:$PATH
 export PATH=$HOME/.cargo/bin/:$PATH
 
+start_keychain_if_interactive
 start_fish_if_interactive
-start_keychain
