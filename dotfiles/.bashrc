@@ -138,12 +138,6 @@ start_fish_if_interactive() {
     if [[ $- == *i* ]]; then
         # Check if fish exists in PATH
         if command -v fish >/dev/null; then
-            # One-time non-interactive initialization of fish asset files
-            if [ ! -d "$HOME/.local/share/fish" ]; then
-                fish -c '__fish_install_all_files' </dev/null || \
-                    echo "[.bashrc] ⚠️ Failed to initialize Fish assets."
-            fi
-
             # Launch fish, fallback to bash if it fails
             exec fish || echo "[.bashrc] ⚠️ Fish failed to launch, staying in Bash."
         fi
