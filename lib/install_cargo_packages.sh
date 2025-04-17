@@ -32,14 +32,6 @@ cargo_install() {
 # add sccache
 cargo_install sccache
 
-# Use sccache if available
-if command -v sccache >/dev/null; then
-    export RUSTC_WRAPPER="$(command -v sccache)"
-    echo "✅ Using sccache for Rust builds: $RUSTC_WRAPPER"
-else
-    echo "⚠️ sccache not found, building without compiler cache"
-fi
-
 # Install yazi-fm (core file manager engine)
 cargo_install yazi-fm
 
