@@ -5,4 +5,4 @@ cd $(dirname $(readlink -f $0))
 
 ./install_uv.sh
 ./install_cargo_packages.sh
-./isntall_dotfiles.sh
+./install_dotfiles.sh
