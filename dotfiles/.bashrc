@@ -119,15 +119,12 @@ fi
 ############### FUNCTIONS ##################################################
 
 # Function to safely initialize SSH key via keychain in interactive shells
-start_keychain_if_interactive() {
-    # Only run in interactive shell
-    if [[ $- == *i* ]]; then
-        # Check if keychain is available
-        if command -v keychain >/dev/null; then
-            # Try to eval keychain setup, fallback silently if it fails
-            eval "$(keychain --eval id_rsa)" || \
-                echo "[.bashrc] ⚠️ keychain failed to initialize."
-        fi
+start_keychain() {
+    # Check if keychain is available
+    if command -v keychain >/dev/null; then
+        # Try to eval keychain setup, fallback silently if it fails
+        eval "$(keychain --eval id_rsa)" || \
+            echo "[.bashrc] ⚠️ keychain failed to initialize."
     fi
 }
 
