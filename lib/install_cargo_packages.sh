@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 
-set -e
+# allow errors
+set +e
 cd $(dirname $(readlink -f $0))
 . header.sh
 
 export PATH=$HOME/.cargo/bin:$PATH
+export RUST_BACKTRACE=1
 
 if command -v rustup >/dev/null 2>&1; then
     echo "Rustup is already installed. Running update..."
