@@ -68,8 +68,7 @@ cargo_install hyperfine
 cargo_install tokei
 
 # Install fish shell
-cargo_install --git https://github.com/fish-shell/fish-shell --tag 4.0.1
-
+cargo_install --git https://github.com/fish-shell/fish-shell --tag 4.0.2
 cargo_install coreutils
 
 # safer alternative to rm
