@@ -40,12 +40,6 @@ else
     echo "⚠️ sccache not found, building without compiler cache"
 fi
 
-# Install yazi-fm (core file manager engine)
-cargo_install yazi-fm
-
-# Install yazi-cli (terminal frontend for yazi-fm)
-cargo_install yazi-cli
-
 # Install ripgrep (fast recursive grep alternative)
 cargo_install ripgrep
 
@@ -64,15 +58,9 @@ cargo_install du-dust
 # Install hyperfine (command-line benchmarking tool)
 cargo_install hyperfine
 
-# Install tokei (code statistics generator)
-cargo_install tokei
 
 # Install fish shell
 cargo_install --git https://github.com/fish-shell/fish-shell --tag 4.0.2
-cargo_install coreutils
 
 # safer alternative to rm
 cargo_install trashy
-
-# nvtop like
-cargo_install nviwatch
