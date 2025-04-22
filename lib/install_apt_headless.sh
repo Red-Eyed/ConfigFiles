@@ -8,6 +8,7 @@ sudo apt-get autoclean --yes
 packages="
     openssl
     pkg-config
+    libssl-dev
     mc
     micro
     tree
