@@ -25,6 +25,7 @@ cargo_install() {
     fi
 
     # Always use --locked to enforce Cargo.lock
+    echo installing "$@"
     cargo install --locked "$@"
 }
 
