@@ -128,6 +128,18 @@ start_keychain() {
     fi
 }
 
+start_ssh_agent() {
+if [ -z "$SSH_AUTH_SOCK" ]; then
+    # Check for a currently running instance of the agent
+    RUNNING_AGENT="`ps -ax | grep 'ssh-agent -s' | grep -v grep | wc -l | tr -d '[:space:]'`"
+    if [ "$RUNNING_AGENT" = "0" ]; then
+        # Launch a new instance of the agent
+        ssh-agent -s &> .ssh/ssh-agent
+    fi
+    eval `cat .ssh/ssh-agent`
+fi
+}
+
 
 # Function to safely switch to Fish in interactive shells
 start_fish_if_interactive() {
@@ -145,5 +157,6 @@ start_fish_if_interactive() {
 export PATH=$HOME/.local/bin/:$PATH
 export PATH=$HOME/.cargo/bin/:$PATH
 
-start_keychain
+# start_keychain
+start_ssh_agent
 start_fish_if_interactive
