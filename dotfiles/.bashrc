@@ -136,7 +136,7 @@ start_fish_if_interactive() {
         # Check if fish exists in PATH
         if command -v fish >/dev/null; then
             # Launch fish, fallback to bash if it fails
-            exec fish || echo "[.bashrc] ⚠️ Fish failed to launch, staying in Bash."
+            fish || echo "[.bashrc] ⚠️ Fish failed to launch, staying in Bash."
         fi
     fi
 }
