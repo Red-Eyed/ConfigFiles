@@ -146,4 +146,3 @@ export PATH=$HOME/.local/bin/:$PATH
 export PATH=$HOME/.cargo/bin/:$PATH
 
 start_keychain
-start_fish_if_interactive
