@@ -28,7 +28,7 @@ if __name__ == "__main__":
         "-s",
         "--script",
         help=f"script to run (choices are):\n  {scripts_help_str}",
-        default="install_linux",
+        default="install_all",
     )
     parser.add_argument(
         "--mode",
