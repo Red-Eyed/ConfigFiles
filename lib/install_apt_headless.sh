@@ -19,14 +19,10 @@ packages="
     zsh
     fish
     htop
-    nvtop
     tmux
     ncdu
     ccache
-    p7zip-full
     zstd
-    pigz
-    patool
     build-essential
     cmake
     ninja-build
@@ -40,25 +36,13 @@ packages="
     lldb
     llvm-dev
     llvm-runtime
-    llvm python3-clang
-    neofetch
+    llvm
     openssh-server
-    mtp-tools
-    ntfs-3g
-    cifs-utils
-    nfs-common
     sshfs
-    icedtea-netx
-    stow
     nmap
     net-tools
-    mediainfo
-    ffmpeg
     inxi
-    cpufrequtils
-    nvme-cli
     keychain
-    libfuse2
     sysfsutils
 "
 
