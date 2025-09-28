@@ -60,7 +60,7 @@ cargo_install hyperfine
 
 
 # Install fish shell
-cargo_install --git https://github.com/fish-shell/fish-shell --tag 4.0.2
+cargo_install --git https://github.com/fish-shell/fish-shell --tag 4.1.0
 
 # safer alternative to rm
 cargo_install trashy
