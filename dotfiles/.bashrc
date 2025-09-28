@@ -136,7 +136,7 @@ start_fish_if_interactive() {
         # Check if fish exists in PATH
         if command -v fish >/dev/null; then
             # Launch fish, fallback to bash if it fails
-            fish || echo "[.bashrc] ⚠️ Fish failed to launch, staying in Bash."
+            exec fish || echo "[.bashrc] ⚠️ Fish failed to launch, staying in Bash."
         fi
     fi
 }
@@ -146,3 +146,4 @@ export PATH=$HOME/.local/bin/:$PATH
 export PATH=$HOME/.cargo/bin/:$PATH
 
 start_keychain
+start_fish_if_interactive
