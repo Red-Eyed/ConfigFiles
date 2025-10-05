@@ -129,14 +129,14 @@ start_keychain() {
 }
 
 
-# Function to safely switch to Fish in interactive shells
-start_fish_if_interactive() {
+# Function to safely switch to zsh in interactive shells
+start_zsh_if_interactive() {
     # Only proceed if this is an interactive shell with a prompt
     if [[ $- == *i* ]] && [ -n "$PS1" ]; then
-        # Check if fish exists in PATH
-        if command -v fish >/dev/null; then
-            # Launch fish, fallback to bash if it fails
-            exec fish || echo "[.bashrc] ⚠️ Fish failed to launch, staying in Bash."
+        # Check if zsh exists in PATH
+        if command -v zsh >/dev/null; then
+            # Launch zsh, fallback to bash if it fails
+            exec zsh || echo "[.bashrc] ⚠️ zsh failed to launch, staying in Bash."
         fi
     fi
 }
@@ -146,4 +146,4 @@ export PATH=$HOME/.local/bin/:$PATH
 export PATH=$HOME/.cargo/bin/:$PATH
 
 start_keychain
-start_fish_if_interactive
+start_zsh_if_interactive
