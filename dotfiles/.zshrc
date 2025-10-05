@@ -65,6 +65,7 @@ HIST_STAMPS="yyyy/mm/dd"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  ssh
   uv
   git
   pip
@@ -138,5 +139,20 @@ export CXX=clang++
 typeset -aU path
 
 alias tmux_attach="tmux new-session -A -s main"
+## ls aliases
+if (( $+commands[exa] )); then
+    # Use exa as a better ls replacement
+    alias ls='exa --group-directories-first --color=always'
+    alias ll='exa -l --group-directories-first --color=always'
+    alias la='exa -la --group-directories-first --color=always'
+    alias lt='exa -lT --level=2 --group-directories-first --color=always'
+    alias l.='exa -la --group-directories-first --color=always | grep "^\."'
+fi
 
-
+# rm aliases
+if (( $+commands[trashy] )); then
+    # Safe replacements for dangerous commands
+    alias rm='trashy'
+    alias rmdir='trashy'
+    alias trash='trashy'
+fi
