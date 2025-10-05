@@ -49,8 +49,8 @@ cargo_install fd-find
 # Install bat (enhanced `cat` with syntax highlighting)
 cargo_install bat
 
-# Install exa (modern `ls` replacement with Git integration)
-cargo_install exa
+# Install eza (modern `ls` replacement with Git integration)
+cargo_install eza
 
 # Install dust (intuitive disk usage analyzer)
 cargo_install du-dust
