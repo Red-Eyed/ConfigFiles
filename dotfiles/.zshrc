@@ -65,6 +65,7 @@ HIST_STAMPS="yyyy/mm/dd"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  uv
   git
   pip
   colorize
@@ -124,6 +125,8 @@ setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 
 export PATH=$PATH:/snap/bin
 export PATH=$PATH:$HOME/appimages
+export PATH=$HOME/.local/bin/:$PATH
+export PATH=$HOME/.cargo/bin/:$PATH
 
 autoload bashcompinit
 bashcompinit
@@ -136,5 +139,4 @@ typeset -aU path
 
 alias tmux_attach="tmux new-session -A -s main"
 
-eval `keychain --eval id_rsa`
 
