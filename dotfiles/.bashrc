@@ -131,9 +131,9 @@ start_keychain() {
 
 # Function to safely switch to zsh in interactive shells
 start_zsh_if_interactive() {
-    # Only proceed if this is an interactive shell (has 'i' in $-)
-    # and we are not already inside zsh
-    if [[ $- == *i* ]] && [ -n "$PS1" ] && [ -z "$ZSH_VERSION" ]; then
+    # Only proceed if we are in an interactive terminal (TERM is set and not 'dumb').
+    # This avoids running in non-human contexts like VSCode remote setup scripts.
+    if [ -n "$TERM" ] && [ "$TERM" != "dumb" ]; then
         # Check if zsh exists in PATH
         if command -v zsh >/dev/null 2>&1; then
             # Update SHELL variable to reflect the change
