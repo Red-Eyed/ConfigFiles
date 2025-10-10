@@ -138,8 +138,12 @@ start_zsh_if_interactive() {
         if command -v zsh >/dev/null 2>&1; then
             # Update SHELL variable to reflect the change
             export SHELL="$(command -v zsh)"
-            # Replace current bash process with zsh login shell
-            exec "$SHELL" -l
+            # Replace current bash process with zsh, preserving login/non-login state
+            if [[ -o login ]]; then
+                exec "$SHELL" -l
+            else
+                exec "$SHELL"
+            fi
         else
             echo "[.bashrc] ⚠️ zsh not found in PATH, staying in Bash."
         fi
