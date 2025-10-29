@@ -86,7 +86,7 @@ export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
-export EDITOR='vim'
+export EDITOR='micro'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -102,7 +102,6 @@ export EDITOR='vim'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias conda_activate="source $HOME/miniconda3/bin/activate root"
 
 ## HISTORY SETTINGS
 HISTSIZE=10000000
@@ -138,8 +137,6 @@ export CXX=clang++
 
 # Remove duplicates in $PATH by changing path type from list to set
 typeset -aU path
-
-alias tmux_attach="tmux new-session -A -s main"
 
 # rm aliases
 if (( $+commands[trashy] )); then
