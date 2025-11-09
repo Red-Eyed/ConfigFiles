@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 cd $(dirname $(readlink -f $0))
 
-sudo apt-get update
-sudo apt-get autoremove --yes
-sudo apt-get autoclean --yes
+# https://github.com/volitank/nala
+# Nala is a front-end for libapt-pkg.
+sudo apt-get install nala
 
 packages="
     openssl
@@ -46,7 +46,5 @@ packages="
     sysfsutils
 "
 
-for pkg in $packages;
-do
-    sudo apt-get install --ignore-missing --yes $pkg
-done
+sudo nala install $packages
+
