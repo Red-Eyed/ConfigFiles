@@ -7,4 +7,5 @@ cd $(dirname $(readlink -f $0))
 ./install_dotfiles.sh
 ./install_apt_headless.sh
 ./install_uv.sh
+./install_golang.sh
 
