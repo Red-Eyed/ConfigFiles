@@ -126,7 +126,7 @@ start_keychain() {
     # Check if keychain is available
     if command -v keychain >/dev/null; then
         # Try to eval keychain setup, fallback silently if it fails
-        eval "$(keychain --eval id_rsa)" || \
+        eval "$(keychain --eval)" || \
             echo "[.bashrc] ⚠️ keychain failed to initialize."
     fi
 }
