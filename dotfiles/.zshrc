@@ -145,3 +145,7 @@ if (( $+commands[trashy] )); then
     alias rmdir='trashy'
     alias trash='trashy'
 fi
+
+if [ -f $HOME/.posixrc ]; then
+  source $HOME/.posixrc
+fi
