@@ -1,6 +1,11 @@
+export PATH=$PATH:$HOME/appimages
+export PATH=$PATH:/snap/bin
 export PATH=$HOME/.local/bin/:$PATH
 export PATH=$HOME/.cargo/bin/:$PATH
 export PATH=$HOME/go/bin/:$PATH
+
+export CC=clang
+export CXX=clang++
 
 if [ -f $HOME/.posixrc.local ]; then
   source $HOME/.posixrc.local

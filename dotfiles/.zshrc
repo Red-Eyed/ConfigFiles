@@ -124,19 +124,8 @@ setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording en
 setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
 setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 
-export PATH=$PATH:/snap/bin
-export PATH=$PATH:$HOME/appimages
-export PATH=$HOME/.local/bin/:$PATH
-export PATH=$HOME/.cargo/bin/:$PATH
-
 autoload bashcompinit
 bashcompinit
-
-export CC=clang
-export CXX=clang++
-
-# Remove duplicates in $PATH by changing path type from list to set
-typeset -aU path
 
 # rm aliases
 if (( $+commands[trashy] )); then
@@ -149,3 +138,6 @@ fi
 if [ -f $HOME/.posixrc ]; then
   source $HOME/.posixrc
 fi
+
+# Remove duplicates in $PATH by changing path type from list to set
+typeset -aU path
