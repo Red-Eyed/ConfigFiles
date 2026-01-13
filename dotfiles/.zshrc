@@ -65,11 +65,10 @@ HIST_STAMPS="yyyy/mm/dd"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-    eza
+    zsh-history-on-success
     ssh
     uv
     git
-    pip
     colorize
     colored-man-pages
     rsync
