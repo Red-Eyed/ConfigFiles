@@ -7,10 +7,17 @@ export PATH=$HOME/go/bin/:$PATH
 export CC=clang
 export CXX=clang++
 
+# source machine specific config
 if [ -f $HOME/.posixrc.local ]; then
   source $HOME/.posixrc.local
 fi
 
+# source nvm (for node.js)
 if [ -f $HOME/.nvm/nvm.sh ]; then
   source $HOME/.nvm/nvm.sh
+fi
+
+# for cline llm agent
+if [ "$CLINE_ACTIVE" = "true" ]; then
+  export PAGER=cat
 fi
