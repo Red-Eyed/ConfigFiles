@@ -6,7 +6,11 @@ cd $(dirname $(readlink -f $0))
 export PATH="$HOME/.local/bin:$PATH"
 
 if ! command -v uv >/dev/null 2>&1; then
-    curl --proto '=https' --tlsv1.2 -LsSf https://astral.sh/uv/install.sh | sh
+    if ! curl --proto '=https' --tlsv1.2 -LsSf https://astral.sh/uv/install.sh | sh; then
+        echo "Primary install failed, falling back to direct GitHub release..."
+        UV_VERSION=$(curl -s https://api.github.com/repos/astral-sh/uv/releases/latest | grep '"tag_name"' | cut -d'"' -f4)
+        curl --proto '=https' --tlsv1.2 -LsSf "https://github.com/astral-sh/uv/releases/download/${UV_VERSION}/uv-installer.sh" | sh
+    fi
 else
     echo "uv is already installed at $(command -v uv)"
 fi
