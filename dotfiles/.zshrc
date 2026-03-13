@@ -70,6 +70,7 @@ plugins=(
     ssh
     uv
     git
+    just
     colorize
     colored-man-pages
     rsync
