@@ -7,6 +7,13 @@ export PATH=$HOME/go/bin/:$PATH
 export CC=clang
 export CXX=clang++
 
+# start ssh-agent (prefer keychain for session persistence)
+if command -v keychain > /dev/null 2>&1; then
+  eval "$(keychain --eval --quiet --agents ssh)"
+elif [ -z "$SSH_AUTH_SOCK" ]; then
+  eval "$(ssh-agent -s)" > /dev/null
+fi
+
 # source machine specific config
 if [ -f $HOME/.posixrc.local ]; then
   source $HOME/.posixrc.local
