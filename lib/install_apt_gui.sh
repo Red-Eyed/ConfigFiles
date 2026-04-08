@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -e
-cd $(dirname $(readlink -f $0))
+cd "$(dirname "$(readlink -f "$0")")" || exit
+# shellcheck source=header.sh
 . header.sh
 
 sudo apt update
@@ -8,7 +9,7 @@ sudo apt full-upgrade --yes
 sudo apt autoremove --yes
 sudo apt autoclean --yes
 
-packages="
+packages=(
     keepassxc
     meld
     qtcreator
@@ -28,11 +29,10 @@ packages="
     mediainfo-gui
     vlc
     gamemode
-"
+)
 
-for pkg in $packages;
-do
-    sudo apt-get install --ignore-missing --yes $pkg
+for pkg in "${packages[@]}"; do
+    sudo apt-get install --ignore-missing --yes "$pkg"
 done
 
 rm -f ~/Downloads/zoom_amd64.deb

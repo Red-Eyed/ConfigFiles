@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -e
-cd $(dirname $(readlink -f $0))
+cd "$(dirname "$(readlink -f "$0")")" || exit
+# shellcheck source=header.sh
 . header.sh
 
 sudo pacman -Suy --needed --noconfirm \

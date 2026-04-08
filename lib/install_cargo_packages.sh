@@ -2,65 +2,47 @@
 
 # allow errors
 set +e
-cd $(dirname $(readlink -f $0))
+cd "$(dirname "$(readlink -f "$0")")" || exit
+# shellcheck source=header.sh
 . header.sh
 
-# install cargo
-if command -v rustup >/dev/null 2>&1; then
-    echo "Rustup is already installed. Running update..."
+if command_exists rustup; then
+    info "Rustup is already installed. Running update..."
     rustup update
 else
-    echo "Rustup not found. Installing rustup..."
+    info "Rustup not found. Installing rustup..."
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path
 fi
 
-export PATH=$HOME/.cargo/bin:$PATH
+export PATH="$HOME/.cargo/bin:$PATH"
 export RUST_BACKTRACE=1
 
 
 cargo_install() {
-    if ! command -v cargo >/dev/null; then
-        echo "❌ cargo not found in PATH" >&2
-        return 1
-    fi
-
+    command_exists cargo || die "cargo not found in PATH"
     # Always use --locked to enforce Cargo.lock
     cargo install --locked "$@"
 }
 
 
-# add sccache
+# add sccache first so subsequent builds can use it as a compiler cache
 cargo_install sccache
 
-# Use sccache if available
-if command -v sccache >/dev/null; then
-    export RUSTC_WRAPPER="$(command -v sccache)"
-    echo "✅ Using sccache for Rust builds: $RUSTC_WRAPPER"
+if command_exists sccache; then
+    RUSTC_WRAPPER="$(command -v sccache)"
+    export RUSTC_WRAPPER
+    info "Using sccache for Rust builds: $RUSTC_WRAPPER"
 else
-    echo "⚠️ sccache not found, building without compiler cache"
+    warn "sccache not found, building without compiler cache"
 fi
 
-# Install ripgrep (fast recursive grep alternative)
-cargo_install ripgrep
+cargo_install ripgrep     # fast recursive grep alternative
+cargo_install fd-find     # user-friendly alternative to find
+cargo_install bat         # enhanced cat with syntax highlighting
+cargo_install eza         # modern ls replacement with Git integration
+cargo_install du-dust     # intuitive disk usage analyzer
+cargo_install hyperfine   # command-line benchmarking tool
+cargo_install trashy      # safer alternative to rm
 
-# Install fd (user-friendly alternative to `find`)
-cargo_install fd-find
-
-# Install bat (enhanced `cat` with syntax highlighting)
-cargo_install bat
-
-# Install eza (modern `ls` replacement with Git integration)
-cargo_install eza
-
-# Install dust (intuitive disk usage analyzer)
-cargo_install du-dust
-
-# Install hyperfine (command-line benchmarking tool)
-cargo_install hyperfine
-
-
-# Install fish shell
+# Install fish shell from source
 cargo_install --git https://github.com/fish-shell/fish-shell --tag 4.1.0
-
-# safer alternative to rm
-cargo_install trashy

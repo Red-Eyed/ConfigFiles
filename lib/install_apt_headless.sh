@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
-cd $(dirname $(readlink -f $0))
+set -e
+cd "$(dirname "$(readlink -f "$0")")" || exit
 
 # https://github.com/volitank/nala
 # Nala is a front-end for libapt-pkg.
 sudo apt-get install nala
 
-packages="
+packages=(
     openssl
     pkg-config
     libssl-dev
@@ -44,7 +45,6 @@ packages="
     inxi
     keychain
     sysfsutils
-"
+)
 
-sudo nala install $packages
-
+sudo nala install "${packages[@]}"

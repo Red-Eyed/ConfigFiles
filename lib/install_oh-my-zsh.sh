@@ -1,7 +1,9 @@
+#!/usr/bin/env bash
 set -e
-cd $(dirname $(readlink -f $0))
+cd "$(dirname "$(readlink -f "$0")")" || exit
+# shellcheck source=header.sh
 . header.sh
 
-if [[ ! -d ~/.oh-my-zsh ]]; then
+if ! dir_exists ~/.oh-my-zsh; then
     git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
 fi
