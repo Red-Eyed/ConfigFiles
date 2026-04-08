@@ -9,3 +9,4 @@ cd "$(dirname "$(readlink -f "$0")")" || exit
 ./install_oh-my-zsh.sh
 ./install_golang.sh
 ./install_node.sh
+./install_cargo.sh

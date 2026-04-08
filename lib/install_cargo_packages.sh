@@ -33,6 +33,4 @@ cargo_install eza         # modern ls replacement with Git integration
 cargo_install du-dust     # intuitive disk usage analyzer
 cargo_install hyperfine   # command-line benchmarking tool
 cargo_install trashy      # safer alternative to rm
-
-# Install fish shell from source
-cargo_install --git https://github.com/fish-shell/fish-shell --tag 4.1.0
+cargo_install bandwhich   # network utilization by process
