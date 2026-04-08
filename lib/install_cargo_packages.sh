@@ -6,24 +6,14 @@ cd "$(dirname "$(readlink -f "$0")")" || exit
 # shellcheck source=header.sh
 . header.sh
 
-if command_exists rustup; then
-    info "Rustup is already installed. Running update..."
-    rustup update
-else
-    info "Rustup not found. Installing rustup..."
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path
-fi
-
 export PATH="$HOME/.cargo/bin:$PATH"
 export RUST_BACKTRACE=1
-
 
 cargo_install() {
     command_exists cargo || die "cargo not found in PATH"
     # Always use --locked to enforce Cargo.lock
     cargo install --locked "$@"
 }
-
 
 # add sccache first so subsequent builds can use it as a compiler cache
 cargo_install sccache
