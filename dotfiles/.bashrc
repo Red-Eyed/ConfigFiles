@@ -120,31 +120,3 @@ fi
 if [ -f $HOME/.posixrc ]; then
   source $HOME/.posixrc
 fi
-
-############### FUNCTIONS ##################################################
-
-# Function to safely initialize SSH key via keychain in interactive shells
-start_keychain() {
-    # Check if keychain is available
-    if command -v keychain >/dev/null; then
-        # Try to eval keychain setup, fallback silently if it fails
-        eval "$(keychain --eval)" || \
-            echo "[.bashrc] ⚠️ keychain failed to initialize."
-    fi
-}
-
-
-# Function to safely switch to a preferred shell in interactive tmux sessions
-start_shell_in_tmux() {
-    # Only proceed if we are in a tmux session.
-    local shell=$1
-    if [ -n "$TMUX" ]; then
-        if command -v "$shell" >/dev/null 2>&1; then
-            export SHELL="$(command -v "$shell")"
-            exec "$SHELL"
-        fi
-    fi
-}
-
-start_keychain
-start_shell_in_tmux zsh || start_shell_in_tmux fish
