@@ -7,11 +7,8 @@ export PATH=$HOME/.local/go/bin:$PATH
 export CC=clang
 export CXX=clang++
 
-# start ssh-agent (prefer keychain for session persistence)
-if command -v keychain > /dev/null 2>&1; then
-  eval "$(keychain --eval --quiet --agents ssh $(ls ~/.ssh/id_* 2>/dev/null | grep -v '\.pub$' | tr '\n' ' '))"
-elif [ -z "$SSH_AUTH_SOCK" ]; then
-  eval "$(ssh-agent -s)" > /dev/null
+if [ -f "$HOME/.ssh-agent-start.sh" ]; then
+  . "$HOME/.ssh-agent-start.sh"
 fi
 
 # source machine specific config
