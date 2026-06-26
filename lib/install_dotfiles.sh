@@ -5,3 +5,6 @@ cd "$(dirname "$(readlink -f "$0")")" || exit
 . header.sh
 
 python3 "$ROOT_DIR/lib/stow.py" --src="$ROOT_DIR/dotfiles" --dst="$HOME" --force
+
+./install_oh-my-zsh.sh
+./install_oh-my-bash.sh
