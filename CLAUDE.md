@@ -62,6 +62,17 @@ Every `install_*.sh` sources `header.sh` which provides:
 - `install_all_no_root.sh` is the default: runs without sudo, installs language runtimes and dotfiles.
 - `install_all.sh` additionally runs `install_apt_headless.sh` (requires sudo).
 
+## Inverse first
+
+Before adding global config, shell exports, aliases, wrappers, or install-time defaults, invert the change:
+
+- Ask how the change could break a future shell, machine, project, target, or missing dependency.
+- Prefer conditional activation for optional tools, for example `command -v tool >/dev/null 2>&1` before exporting a wrapper.
+- Keep global environment variables behavior-preserving by default; avoid global flags that change linker, target, optimization, or build semantics unless they are guarded or scoped.
+- Design the fallback first. If the dependency is absent or the project is unusual, the old behavior should continue.
+
+For Rust specifically, `RUSTC_WRAPPER=sccache` is acceptable only behind a `sccache` existence check. Avoid global `RUSTFLAGS` linker overrides; put target-specific linker choices in project or Cargo config only when the target is known.
+
 ## Environment variables set by `install`
 
 | Variable | Value |
