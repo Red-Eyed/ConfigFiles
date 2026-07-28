@@ -7,16 +7,18 @@ export PATH=$HOME/.local/go/bin:$PATH
 export CC=clang
 export CXX=clang++
 
-# Use Rust compiler caching only when the wrapper exists; otherwise cargo falls
-# back to plain rustc instead of failing every build.
+# Use sccache when available; otherwise fall back to Cargo incremental builds.
+# Keep the modes exclusive because sccache rejects forced incremental builds.
 if command -v sccache >/dev/null 2>&1; then
   export RUSTC_WRAPPER=sccache
   export SCCACHE_DIR="$HOME/.cache/sccache"
   export SCCACHE_CACHE_SIZE=20G
+  unset CARGO_INCREMENTAL
+else
+  export CARGO_INCREMENTAL=1
 fi
 
-# Keep dev rebuilds fast without forcing global linker or target flags.
-export CARGO_INCREMENTAL=1
+# Keep dev builds lighter without forcing global linker or target flags.
 export CARGO_PROFILE_DEV_DEBUG=1
 
 if [ -f "$HOME/.ssh-agent-start.sh" ]; then
