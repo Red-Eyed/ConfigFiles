@@ -10,12 +10,6 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export RUST_BACKTRACE=1
 export BINSTALL_DISABLE_TELEMETRY=true
 
-cargo_install() {
-    command_exists cargo || die "cargo not found in PATH"
-    # Always use --locked to enforce Cargo.lock
-    cargo install --locked "$@"
-}
-
 install_binstall() {
     if command_exists cargo-binstall; then
         info "cargo-binstall is already installed"
@@ -29,21 +23,17 @@ install_binstall() {
         return
     fi
 
-    warn "Prebuilt cargo-binstall install failed, compiling from source"
-    cargo_install cargo-binstall
+    die "Prebuilt cargo-binstall install failed"
 }
 
 install_cli_tool() {
     local crate="$1"
     local description="$2"
 
-    info "Installing ${crate}: ${description}"
-    if command_exists cargo-binstall; then
-        cargo binstall --no-confirm --locked "$crate" && return
-        warn "Binary install failed for ${crate}, compiling from source"
-    fi
+    command_exists cargo-binstall || die "cargo-binstall not found in PATH"
 
-    cargo_install "$crate"
+    info "Installing ${crate}: ${description}"
+    cargo binstall --no-confirm --disable-strategies compile "$crate"
 }
 
 install_binstall
@@ -65,5 +55,4 @@ install_cli_tool bat "enhanced cat with syntax highlighting"
 install_cli_tool eza "modern ls replacement with Git integration"
 install_cli_tool du-dust "intuitive disk usage analyzer"
 install_cli_tool hyperfine "command-line benchmarking tool"
-install_cli_tool trashy "safer alternative to rm"
 install_cli_tool bandwhich "network utilization by process"
