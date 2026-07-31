@@ -4,9 +4,6 @@ export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.cargo/bin:$PATH
 export PATH=$HOME/.local/go/bin:$PATH
 
-export CC=clang
-export CXX=clang++
-
 # Use sccache when available; otherwise fall back to Cargo incremental builds.
 # Keep the modes exclusive because sccache rejects forced incremental builds.
 if command -v sccache >/dev/null 2>&1; then
@@ -17,9 +14,6 @@ if command -v sccache >/dev/null 2>&1; then
 else
   export CARGO_INCREMENTAL=1
 fi
-
-# Keep dev builds lighter without forcing global linker or target flags.
-export CARGO_PROFILE_DEV_DEBUG=1
 
 if [ -f "$HOME/.ssh-agent-start.sh" ]; then
   . "$HOME/.ssh-agent-start.sh"
