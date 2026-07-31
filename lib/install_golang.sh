@@ -11,6 +11,28 @@ log() {
 
 log "Fetching latest Go version..."
 GO_VERSION=$(curl -fsSL https://go.dev/VERSION?m=text | head -n 1)
+INSTALL_DIR="$HOME/.local/go"
+
+installed_go_version() {
+    if [[ ! -x "$INSTALL_DIR/bin/go" ]]; then
+        return 0
+    fi
+
+    local version_output
+    if ! version_output=$("$INSTALL_DIR/bin/go" version 2>/dev/null); then
+        return 0
+    fi
+
+    local _go_label _version_label version _platform
+    read -r _go_label _version_label version _platform <<<"$version_output"
+    printf '%s\n' "$version"
+}
+
+CURRENT_GO_VERSION=$(installed_go_version)
+if [[ "$CURRENT_GO_VERSION" == "$GO_VERSION" ]]; then
+    log "Go ${GO_VERSION} is already installed at ${INSTALL_DIR}; nothing to do."
+    exit 0
+fi
 
 case "$(uname -s)" in
     Darwin)
@@ -46,11 +68,11 @@ log "Detected platform: ${GO_OS}-${GO_ARCH}"
 log "Downloading ${ARCHIVE}..."
 curl -fsSL "https://go.dev/dl/${ARCHIVE}" -o "$TMP_ARCHIVE"
 
-log "Removing previous install at $HOME/.local/go..."
-rm -rf "$HOME/.local/go"
+log "Removing previous install at ${INSTALL_DIR}..."
+rm -rf "$INSTALL_DIR"
 mkdir -p "$HOME/.local"
 
-log "Extracting Go to $HOME/.local/go..."
+log "Extracting Go to ${INSTALL_DIR}..."
 tar -C "$HOME/.local" -xzf "$TMP_ARCHIVE"
 
-log "Done. Go installed at $HOME/.local/go"
+log "Done. Go installed at ${INSTALL_DIR}"
