@@ -8,6 +8,7 @@ cd "$(dirname "$(readlink -f "$0")")" || exit
 
 export PATH="$HOME/.cargo/bin:$PATH"
 export RUST_BACKTRACE=1
+export BINSTALL_DISABLE_TELEMETRY=true
 
 cargo_install() {
     command_exists cargo || die "cargo not found in PATH"
@@ -15,8 +16,40 @@ cargo_install() {
     cargo install --locked "$@"
 }
 
+install_binstall() {
+    if command_exists cargo-binstall; then
+        info "cargo-binstall is already installed"
+        return
+    fi
+
+    info "Installing cargo-binstall from prebuilt release..."
+    if curl -L --proto '=https' --tlsv1.2 -sSf \
+        https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh |
+        bash; then
+        return
+    fi
+
+    warn "Prebuilt cargo-binstall install failed, compiling from source"
+    cargo_install cargo-binstall
+}
+
+install_cli_tool() {
+    local crate="$1"
+    local description="$2"
+
+    info "Installing ${crate}: ${description}"
+    if command_exists cargo-binstall; then
+        cargo binstall --no-confirm --locked "$crate" && return
+        warn "Binary install failed for ${crate}, compiling from source"
+    fi
+
+    cargo_install "$crate"
+}
+
+install_binstall
+
 # add sccache first so subsequent builds can use it as a compiler cache
-cargo_install sccache
+install_cli_tool sccache "Rust compiler cache"
 
 if command_exists sccache; then
     RUSTC_WRAPPER="$(command -v sccache)"
@@ -26,11 +59,11 @@ else
     warn "sccache not found, building without compiler cache"
 fi
 
-cargo_install ripgrep     # fast recursive grep alternative
-cargo_install fd-find     # user-friendly alternative to find
-cargo_install bat         # enhanced cat with syntax highlighting
-cargo_install eza         # modern ls replacement with Git integration
-cargo_install du-dust     # intuitive disk usage analyzer
-cargo_install hyperfine   # command-line benchmarking tool
-cargo_install trashy      # safer alternative to rm
-cargo_install bandwhich   # network utilization by process
+install_cli_tool ripgrep "fast recursive grep alternative"
+install_cli_tool fd-find "user-friendly alternative to find"
+install_cli_tool bat "enhanced cat with syntax highlighting"
+install_cli_tool eza "modern ls replacement with Git integration"
+install_cli_tool du-dust "intuitive disk usage analyzer"
+install_cli_tool hyperfine "command-line benchmarking tool"
+install_cli_tool trashy "safer alternative to rm"
+install_cli_tool bandwhich "network utilization by process"
