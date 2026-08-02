@@ -3,6 +3,8 @@ export PATH=$PATH:/snap/bin
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.cargo/bin:$PATH
 export PATH=$HOME/.local/go/bin:$PATH
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
 
 # Use sccache when available; otherwise fall back to Cargo incremental builds.
 # Keep the modes exclusive because sccache rejects forced incremental builds.
