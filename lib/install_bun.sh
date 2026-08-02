@@ -1,53 +1,51 @@
 #!/usr/bin/env bash
-set -e
+set -eo pipefail
 cd "$(dirname "$(readlink -f "$0")")" || exit
 # shellcheck source=header.sh
 . header.sh
 
 BUN_RELEASE_DELAY_DAYS=20
-BUN_RELEASES_URL="https://api.github.com/repos/oven-sh/bun/releases?per_page=100"
+BUN_REPO_URL="https://github.com/oven-sh/bun.git"
 
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-select_bun_release() {
-    local releases_json
-    releases_json=$(curl --proto '=https' --tlsv1.2 -fsSL "$BUN_RELEASES_URL")
+select_bun_release() (
+    local commit repo_dir tag
+    repo_dir=$(mktemp -d "${TMPDIR:-/tmp}/bun-release.XXXXXX")
+    trap 'rm -rf "$repo_dir"' EXIT
 
-    BUN_RELEASES_JSON="$releases_json" python3 - "$BUN_RELEASE_DELAY_DAYS" <<'PY'
-import json
-import os
-import sys
-from datetime import datetime, timedelta, timezone
+    git -C "$repo_dir" init --quiet
+    git -C "$repo_dir" remote add origin "$BUN_REPO_URL"
+    git -C "$repo_dir" fetch --quiet --depth=1 origin \
+        "refs/tags/bun-v*:refs/tags/bun-v*"
 
-delay_days = int(sys.argv[1])
-cutoff = datetime.now(timezone.utc) - timedelta(days=delay_days)
+    while read -r tag; do
+        commit=$(git -C "$repo_dir" log -1 \
+            --before="${BUN_RELEASE_DELAY_DAYS} days ago" \
+            --format="%H" \
+            "$tag")
 
-for release in json.loads(os.environ["BUN_RELEASES_JSON"]):
-    if release.get("draft") or release.get("prerelease"):
-        continue
+        if [[ -n "$commit" ]]; then
+            printf '%s\n' "$tag"
+            return 0
+        fi
+    done < <(
+        git -C "$repo_dir" for-each-ref \
+            --sort=-creatordate \
+            --format='%(refname:short)' \
+            refs/tags/bun-v
+    )
 
-    tag = release.get("tag_name", "")
-    if not tag.startswith("bun-v"):
-        continue
-
-    published_at = release.get("published_at")
-    if published_at is None:
-        continue
-
-    published = datetime.fromisoformat(published_at.replace("Z", "+00:00"))
-    if published <= cutoff:
-        print(tag)
-        raise SystemExit(0)
-
-raise SystemExit(f"No stable Bun release older than {delay_days} days found")
-PY
-}
+    error "No stable Bun release older than ${BUN_RELEASE_DELAY_DAYS} days found"
+    return 1
+)
 
 if ! command_exists bun; then
     bun_release=$(select_bun_release)
     info "Installing Bun ${bun_release}"
     curl --proto '=https' --tlsv1.2 -fsSL https://bun.com/install | bash -s "$bun_release"
+    command_exists bun || die "Bun installation completed but bun is not in PATH"
 else
     info "bun is already installed at $(command -v bun)"
 fi
