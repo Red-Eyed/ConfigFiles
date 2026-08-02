@@ -23,16 +23,21 @@ download() { curl --proto '=https' --tlsv1.2 -fsSL "$1" -o "$2"; }
 
 # ── git pinning ───────────────────────────────────────────────────────────────
 
-# Clone a repo and check out the newest commit that is at least DAYS old.
-# Skips the clone if DEST already exists.
+# Materialize a repo and check out the newest commit that is at least DAYS old.
+# If DEST already exists without .git, initialize it in place and preserve files.
 # Usage: clone_pinned_repo <url> <dest> <days>
 clone_pinned_repo() {
     local url="$1" dest="$2" days="$3"
     if ! dir_exists "$dest"; then
         git clone --quiet "$url" "$dest"
+    elif ! dir_exists "$dest/.git"; then
+        git -C "$dest" init --quiet
+        git -C "$dest" remote add origin "$url"
+        git -C "$dest" fetch --quiet origin
     fi
+
     local commit
-    commit=$(git -C "$dest" log --before="${days} days ago" -1 --format="%H")
+    commit=$(git -C "$dest" log --all --before="${days} days ago" -1 --format="%H")
     [[ -n "$commit" ]] || die "No commit older than ${days} days found in $url"
     git -C "$dest" checkout --quiet "$commit"
 }
