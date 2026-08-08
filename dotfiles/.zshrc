@@ -1,7 +1,5 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
 [[ -f /etc/environment ]] && source /etc/environment
-[[ -f ~/.profile ]] && source ~/.profile
+[[ -f "$HOME/.posixrc" ]] && source "$HOME/.posixrc"
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -76,7 +74,7 @@ plugins=(
     copyfile
 )
 
-source $ZSH/oh-my-zsh.sh
+[[ -f "$ZSH/oh-my-zsh.sh" ]] && source "$ZSH/oh-my-zsh.sh"
 
 # User configuration
 
@@ -133,8 +131,11 @@ if (( $+commands[trashy] )); then
     alias trash='trashy'
 fi
 
-if [ -f $HOME/.posixrc ]; then
-  source $HOME/.posixrc
+if [[ -d "$HOME/.zshrc.d" ]]; then
+    for zsh_config in "$HOME"/.zshrc.d/*.zsh(N); do
+        [[ -r "$zsh_config" ]] && source "$zsh_config"
+    done
+    unset zsh_config
 fi
 
 # Remove duplicates in $PATH by changing path type from list to set

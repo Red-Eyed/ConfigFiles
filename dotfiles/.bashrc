@@ -1,3 +1,5 @@
+# shellcheck shell=bash
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -6,14 +8,19 @@ esac
 
 export OSH="$HOME/.oh-my-bash"
 
+# shellcheck disable=SC2034
 OSH_THEME="bira-ascii"
 
+# shellcheck disable=SC2034
 DISABLE_AUTO_UPDATE="true"
 
+# shellcheck disable=SC2034
 CASE_SENSITIVE="true"
 
+# shellcheck disable=SC2034
 HIST_STAMPS="yyyy/mm/dd"
 
+# shellcheck disable=SC2034
 plugins=(
     git
     colored-man-pages
@@ -21,17 +28,6 @@ plugins=(
 
 # shellcheck source=/dev/null
 [[ -f "$OSH/oh-my-bash.sh" ]] && source "$OSH/oh-my-bash.sh"
-
-# ── history ───────────────────────────────────────────────────────────────────
-
-HISTCONTROL=ignoreboth:erasedups
-shopt -s histappend
-HISTSIZE=10000000
-HISTFILESIZE=10000000
-
-# Arrow up/down searches history matching the current prefix (zsh-like behaviour)
-bind '"\e[A": history-search-backward'
-bind '"\e[B": history-search-forward'
 
 # ── extract (OMZ plugin equivalent) ──────────────────────────────────────────
 
@@ -71,4 +67,15 @@ export EDITOR='micro'
 
 # ── shared config ─────────────────────────────────────────────────────────────
 
+# shellcheck source=/dev/null
 [[ -f "$HOME/.posixrc" ]] && source "$HOME/.posixrc"
+
+# ── interactive modules ───────────────────────────────────────────────────────
+
+if [[ -d "$HOME/.bashrc.d" ]]; then
+    for bash_config in "$HOME"/.bashrc.d/*.bash; do
+        # shellcheck source=/dev/null
+        [[ -r "$bash_config" ]] && source "$bash_config"
+    done
+    unset bash_config
+fi

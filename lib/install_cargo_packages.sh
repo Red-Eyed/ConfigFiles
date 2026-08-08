@@ -4,6 +4,7 @@
 set +e
 cd "$(dirname "$(readlink -f "$0")")" || exit
 # shellcheck source=header.sh
+# shellcheck disable=SC1091
 . header.sh
 
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -53,6 +54,7 @@ install_cli_tool ripgrep "fast recursive grep alternative"
 install_cli_tool fd-find "user-friendly alternative to find"
 install_cli_tool bat "enhanced cat with syntax highlighting"
 install_cli_tool eza "modern ls replacement with Git integration"
+install_cli_tool zoxide "smarter directory jumper"
 install_cli_tool du-dust "intuitive disk usage analyzer"
 install_cli_tool hyperfine "command-line benchmarking tool"
 install_cli_tool bandwhich "network utilization by process"
