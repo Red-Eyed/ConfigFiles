@@ -56,6 +56,6 @@ if [ -f "$HOME/.nvm/nvm.sh" ]; then
 fi
 
 # for cline llm agent
-if [ "$CLINE_ACTIVE" = "true" ]; then
+if [ "${CLINE_ACTIVE:-}" = "true" ]; then
   export PAGER=cat
 fi
