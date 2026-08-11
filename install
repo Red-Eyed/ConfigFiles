@@ -15,7 +15,11 @@ ROOT_DIR = Path(__file__).absolute().parent.resolve()
 ENV = os.environ.copy()
 
 if __name__ == "__main__":
-    scripts = [s for s in (ROOT_DIR / "lib").iterdir() if s.name.startswith("install_")]
+    scripts = [
+        s
+        for s in (ROOT_DIR / "lib").iterdir()
+        if s.name.startswith(("install_", "uninstall_"))
+    ]
     scripts = sorted(scripts, key=lambda s: s.name.lower())
     script2file = {s.stem: s for s in scripts}
 
