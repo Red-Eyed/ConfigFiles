@@ -61,6 +61,7 @@ packages=(
     bandwhich
     viu
     tabiew
+    jless
 )
 
 # Binstall resolves and downloads the batch concurrently, then installs the binaries.
