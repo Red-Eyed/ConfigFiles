@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
-# Installs the latest stable Go toolchain into "$HOME/.local/go" without
-# requiring root access. Supports Linux and macOS on amd64 and arm64.
+# Reuses an existing Go toolchain or installs the latest stable release into
+# "$HOME/.local/go". Supports Linux and macOS on amd64 and arm64 without root.
 
 set -euo pipefail
 
@@ -9,30 +9,27 @@ log() {
     echo "[install_golang] $*"
 }
 
-log "Fetching latest Go version..."
-GO_VERSION=$(curl -fsSL https://go.dev/VERSION?m=text | head -n 1)
 INSTALL_DIR="$HOME/.local/go"
 
 installed_go_version() {
-    if [[ ! -x "$INSTALL_DIR/bin/go" ]]; then
-        return 0
-    fi
-
-    local version_output
-    if ! version_output=$("$INSTALL_DIR/bin/go" version 2>/dev/null); then
-        return 0
-    fi
-
-    local _go_label _version_label version _platform
-    read -r _go_label _version_label version _platform <<<"$version_output"
-    printf '%s\n' "$version"
+    local go_binary
+    for go_binary in "$INSTALL_DIR/bin/go" "$(command -v go || true)"; do
+        [[ -x "$go_binary" ]] || continue
+        # Inspect the bundled toolchain without downloading a project-selected version.
+        if GOTOOLCHAIN=local "$go_binary" version 2>/dev/null; then
+            return 0
+        fi
+    done
+    return 1
 }
 
-CURRENT_GO_VERSION=$(installed_go_version)
-if [[ "$CURRENT_GO_VERSION" == "$GO_VERSION" ]]; then
-    log "Go ${GO_VERSION} is already installed at ${INSTALL_DIR}; nothing to do."
+if CURRENT_GO_VERSION=$(installed_go_version); then
+    log "Already installed: ${CURRENT_GO_VERSION}"
     exit 0
 fi
+
+log "Fetching latest Go version..."
+GO_VERSION=$(curl -fsSL 'https://go.dev/VERSION?m=text' | head -n 1)
 
 case "$(uname -s)" in
     Darwin)
