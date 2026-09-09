@@ -50,12 +50,18 @@ else
     warn "sccache not found, building without compiler cache"
 fi
 
-install_cli_tool ripgrep "fast recursive grep alternative"
-install_cli_tool fd-find "user-friendly alternative to find"
-install_cli_tool bat "enhanced cat with syntax highlighting"
-install_cli_tool eza "modern ls replacement with Git integration"
-install_cli_tool zoxide "smarter directory jumper"
-install_cli_tool du-dust "intuitive disk usage analyzer"
-install_cli_tool hyperfine "command-line benchmarking tool"
-install_cli_tool bandwhich "network utilization by process"
-install_cli_tool viu "terminal image viewer"
+packages=(
+    ripgrep
+    fd-find
+    bat
+    eza
+    zoxide
+    du-dust
+    hyperfine
+    bandwhich
+    viu
+)
+
+# Binstall resolves and downloads the batch concurrently, then installs the binaries.
+info "Installing CLI tools: ${packages[*]}"
+cargo binstall --no-confirm --disable-strategies compile --continue-on-failure "${packages[@]}"
