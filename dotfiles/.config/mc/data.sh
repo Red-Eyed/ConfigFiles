@@ -18,11 +18,22 @@ within_preview_limit() {
     [ "$size" -le "$max_bytes" ] 2>/dev/null
 }
 
-# Tabiew loads data into memory; the cutoff uses file size, not decoded size.
-if [ -t 1 ] && command -v tw >/dev/null 2>&1 && within_preview_limit; then
-    if tw --format "$format" -- "$file"; then
-        exit 0
-    fi
+view_data() {
+    case "$format" in
+        json|jsonl)
+            command -v jless >/dev/null 2>&1 || return 1
+            jless --json --mode line -- "$file"
+            ;;
+        *)
+            command -v tw >/dev/null 2>&1 || return 1
+            tw --format "$format" -- "$file"
+            ;;
+    esac
+}
+
+# Both viewers load data into memory; the cutoff uses file size, not decoded size.
+if [ -t 1 ] && within_preview_limit && view_data; then
+    exit 0
 fi
 
 # mc -v would invoke this association again.
