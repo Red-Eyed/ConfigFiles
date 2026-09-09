@@ -60,6 +60,7 @@ packages=(
     hyperfine
     bandwhich
     viu
+    tabiew
 )
 
 # Binstall resolves and downloads the batch concurrently, then installs the binaries.
