@@ -59,7 +59,6 @@ packages=(
     du-dust
     hyperfine
     bandwhich
-    viu
     tabiew
     jless
 )
@@ -67,3 +66,10 @@ packages=(
 # Binstall resolves and downloads the batch concurrently, then installs the binaries.
 info "Installing CLI tools: ${packages[*]}"
 cargo binstall --no-confirm --disable-strategies compile --continue-on-failure "${packages[@]}"
+binstall_status=$?
+
+# Standard viu binaries omit Sixel, which Windows Terminal and Zellij use.
+info "Installing viu with Sixel support (source build)"
+cargo install --locked --features icy_sixel viu || exit $?
+
+exit "$binstall_status"
