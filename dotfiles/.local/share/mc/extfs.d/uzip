@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# Keep MC's ZIP listing/editing behavior; use a broader decoder for extraction.
+if [ "$1" = copyout ]; then
+    for extractor in 7zz 7z; do
+        if command -v "$extractor" >/dev/null 2>&1; then
+            exec "$extractor" e -so -spd -- "$2" "$3" > "$4"
+        fi
+    done
+fi
+
+vfs_dir=$(LC_ALL=C mc --datadir-info | sed -n 's/^[[:space:]]*VFS plugins and scripts: *//p')
+if [ -n "$vfs_dir" ] && [ -x "$vfs_dir/extfs.d/uzip" ]; then
+    exec "$vfs_dir/extfs.d/uzip" "$@"
+fi
+
+printf 'MC system ZIP handler is unavailable\n' >&2
+exit 1

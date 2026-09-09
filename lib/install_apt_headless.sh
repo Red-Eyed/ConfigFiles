@@ -47,4 +47,10 @@ packages=(
     sysfsutils
 )
 
+if apt-cache show 7zip >/dev/null 2>&1; then
+    packages+=(7zip)
+else
+    packages+=(p7zip-full)
+fi
+
 sudo nala install "${packages[@]}"
