@@ -13,4 +13,5 @@ if [ -t 1 ] && command -v viu >/dev/null 2>&1 && viu --static -- "$file"; then
     exit 0
 fi
 
-exec mc -v -- "$file"
+# mc -v reuses this association and would recurse when image decoding fails.
+exec less -f -- "$file"
