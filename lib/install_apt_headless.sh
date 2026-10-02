@@ -2,10 +2,6 @@
 set -e
 cd "$(dirname "$(readlink -f "$0")")" || exit
 
-# https://github.com/volitank/nala
-# Nala is a front-end for libapt-pkg.
-sudo apt-get install nala
-
 packages=(
     openssl
     pkg-config
@@ -49,8 +45,19 @@ packages=(
 
 if apt-cache show 7zip >/dev/null 2>&1; then
     packages+=(7zip)
-else
+elif apt-cache show p7zip-full >/dev/null 2>&1; then
     packages+=(p7zip-full)
 fi
 
-sudo nala install "${packages[@]}"
+available_packages=()
+for package in "${packages[@]}"; do
+    if apt-cache show "$package" >/dev/null 2>&1; then
+        available_packages+=("$package")
+    else
+        printf 'Skipping unavailable package: %s\n' "$package" >&2
+    fi
+done
+
+if ((${#available_packages[@]})); then
+    sudo apt-get install "${available_packages[@]}"
+fi
