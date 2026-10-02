@@ -45,7 +45,7 @@ packages=(
 )
 
 for package in "${packages[@]}"; do
-    if ! sudo apt-get install "$package"; then
+    if ! sudo apt-get install --yes "$package"; then
         printf 'Skipping failed package: %s\n' "$package" >&2
     fi
 done
