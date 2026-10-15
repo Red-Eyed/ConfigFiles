@@ -1,3 +1,6 @@
 [Midnight-Commander]
 use_internal_edit=0
 use_internal_view=1
+
+[Panels]
+show_dot_files=true
