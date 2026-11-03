@@ -8,6 +8,23 @@ Clone repository:
 
 Use `./ConfigFiles/install -h` to get help
 
+The launcher requires only Python 3 and defaults to headless installation on
+servers. Select a script with `-s`; pass its arguments after `--`:
+
+```bash
+./install -s install_ssh_resilience -- diagnose
+```
+
+For Docker/Podman builds running as root, explicitly enable the bundled sudo shim:
+
+```bash
+./install --force_superuser
+```
+
+The Python launcher lives in `installer/`: `cli.py` parses arguments,
+`scripts.py` discovers shell installers, and `runner.py` manages execution.
+Run its isolated tests with `uv run --with pytest pytest installer/tests`.
+
 For opt-in SSH resource protection on Linux servers with systemd 255+ and cgroup v2, see
 [SSH availability deployment and diagnostics](docs/ssh-availability.md).
 This policy is not part of the default installer.

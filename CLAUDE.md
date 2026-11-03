@@ -16,7 +16,7 @@ A personal dotfiles and system-setup repository. It installs shell configs, tool
 ./install -h                       # full help
 ```
 
-`install` is a Python 3 script that discovers all `lib/install_*.sh` scripts, sets `ROOT_DIR` and `args_*` environment variables, then executes the chosen script via `/bin/bash`.
+`install` is a dependency-free Python 3 entry point for `installer.cli`. The package discovers `lib/install_*.sh` and `lib/uninstall_*.sh` files, sets `ROOT_DIR` and `ARGS_*` environment variables, then executes the chosen script via `/bin/bash`. Arguments after `--` are forwarded verbatim. Root execution requires `--force_superuser`, including in Docker/Podman.
 
 ## Linting bash scripts
 
@@ -27,7 +27,12 @@ python3 lib/check.py   # runs shellcheck --external-sources on all lib/*.sh
 ## Architecture
 
 ```
-install              # Python entry point — arg parsing, env setup, dispatch
+install              # thin Python entry point
+installer/
+  cli.py             # argument parsing, help, and dispatch
+  scripts.py         # shell installer discovery
+  runner.py          # environment, root policy, and execution
+  tests/             # isolated launcher tests (uv run --with pytest pytest installer/tests)
 lib/
   header.sh          # sourced by every install script; defines shared helpers
   install_*.sh       # individual installers, each self-contained

@@ -1,85 +1,10 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+"""Launch setup scripts using only Python's standard library."""
 
-__author__ = "Vadym Stupakov"
-__email__ = "vadim.stupakov@gmail.com"
-
-import os
-import stat
 import sys
-from argparse import ArgumentParser, RawTextHelpFormatter
 from pathlib import Path
-from subprocess import run
 
-ROOT_DIR = Path(__file__).absolute().parent.resolve()
-ENV = os.environ.copy()
+from installer.cli import main
 
 if __name__ == "__main__":
-    scripts = [
-        s
-        for s in (ROOT_DIR / "lib").iterdir()
-        if s.name.startswith(("install_", "uninstall_"))
-    ]
-    scripts = sorted(scripts, key=lambda s: s.name.lower())
-    script2file = {s.stem: s for s in scripts}
-
-    scripts_help_str = "\n  ".join(script2file.keys())
-    parser = ArgumentParser(
-        prog="install",
-        formatter_class=RawTextHelpFormatter,
-    )
-    parser.add_argument(
-        "-s",
-        "--script",
-        help=f"script to run (choices are):\n  {scripts_help_str}",
-        default="install_all_no_root",
-    )
-    parser.add_argument(
-        "--mode",
-        help="Installation mode",
-        choices=["gui", "headless"],
-        default="headless",
-    )
-    parser.add_argument(
-        "--force_superuser",
-        help="Install all from superuser. Use it for docker builds, for example",
-        action="store_true",
-    )
-
-    args, extra_args = parser.parse_known_args()
-
-    if args.script not in script2file:
-        print(
-            f"❌ Invalid script: '{args.script}'\nAvailable choices:\n  {scripts_help_str}",
-            file=sys.stderr,
-        )
-        sys.exit(1)
-
-    env_args = {}
-    for k, v in args.__dict__.items():
-        if isinstance(v, bool):
-            v = str(int(v))
-
-        env_args[f"args_{k}".upper()] = v
-
-    ENV.update(env_args)
-    ENV["ROOT_DIR"] = ROOT_DIR.as_posix()
-
-    is_superuser = os.getuid() == 0
-    cmd = ["/bin/bash", (script2file[args.script]).as_posix()] + extra_args[1:]
-    print(cmd)
-
-    if is_superuser:
-        if args.force_superuser:
-            fake_sudo = ROOT_DIR / "lib/sudo"
-            fake_sudo.chmod(fake_sudo.stat().st_mode | stat.S_IEXEC)
-            ENV["PATH"] = f"{fake_sudo.parent}{os.pathsep}{ENV['PATH']}"
-        else:
-            print("Run this script without sudo!")
-            sys.exit(-1)
-
-    try:
-        ret = run(cmd, env=ENV)
-        sys.exit(ret.returncode)
-    except KeyboardInterrupt:
-        sys.exit(0)
+    sys.exit(main(Path(__file__).resolve().parent, sys.argv[1:]))
