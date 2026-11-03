@@ -2,7 +2,8 @@
 # Stage native systemd/OpenSSH resource protection on Linux servers, inspect the
 # running configuration, or remove this utility's managed drop-ins.
 # apply validates and writes files only; activation is deferred to an operator's
-# reboot. No command reloads services, terminates workloads, or reboots the host.
+# reboot. remove-obsolete disables the legacy VLC unit and reloads systemd;
+# no command restarts SSH, activates resource limits, or reboots the host.
 # Deployment parameters and recovery limits: ../docs/ssh-availability.md.
 
 set -euo pipefail
@@ -45,12 +46,13 @@ stage=
 
 usage() {
     cat <<'EOF'
-Usage: sudo bash lib/ssh_availability.sh diagnose|dry-run|apply|rollback
+Usage: sudo bash lib/ssh_availability.sh diagnose|dry-run|apply|rollback|remove-obsolete
        bash lib/ssh_availability.sh --help
 
 apply only stages configuration for the next operator-scheduled reboot.
 rollback removes staged configuration; reboot to undo already active policy.
 Neither command reloads systemd, restarts SSH, kills processes, or reboots.
+remove-obsolete disables/removes the legacy VLC unit and reloads systemd only.
 Configuration is supplied through environment variables; see docs/ssh-availability.md.
 EOF
 }
@@ -397,6 +399,20 @@ rollback() {
     info 'Owned drop-ins removed. Reboot to remove policy already loaded by systemd/sshd.'
 }
 
+# --- Explicit migration from obsolete repository services ---
+
+remove_obsolete() {
+    local unit=kill_vlc_on_resume.service
+    local file=/etc/systemd/system/$unit
+    [[ $(uname -s) == Linux && -d /run/systemd/system ]] || die 'A running Linux systemd host is required'
+    if [[ -e $file || -L $file ]]; then
+        systemctl disable --now "$unit"
+        rm -f -- "$file"
+    fi
+    systemctl daemon-reload
+    info 'Obsolete VLC unit removed; SSH and resource limits were not restarted or changed.'
+}
+
 # --- Read-only runtime diagnostics ---
 
 report() {
@@ -476,6 +492,7 @@ main() {
         --help|-h) usage; return ;;
         diagnose) diagnose; return ;;
         rollback) is_root || die 'Run as root'; rollback; return ;;
+        remove-obsolete) is_root || die 'Run as root'; remove_obsolete; return ;;
         dry-run|apply) ;;
         *) usage; exit 2 ;;
     esac

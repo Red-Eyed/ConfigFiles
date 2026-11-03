@@ -11,9 +11,9 @@ cd "$(dirname "$(readlink -f "$0")")" || exit
 # --- Action selection ---
 
 action=${1:-apply}
-[[ $# -le 1 ]] || die 'Usage: ./install -s install_ssh_resilience -- [apply|dry-run|diagnose|rollback]'
+[[ $# -le 1 ]] || die 'Usage: ./install -s install_ssh_resilience -- [apply|dry-run|diagnose|rollback|remove-obsolete]'
 case $action in
-    apply|dry-run|diagnose|rollback|--help|-h) ;;
+    apply|dry-run|diagnose|rollback|remove-obsolete|--help|-h) ;;
     *) die "Unknown SSH resilience action: $action" ;;
 esac
 command=(bash "$PWD/ssh_availability.sh" "$action")
