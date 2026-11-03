@@ -16,6 +16,7 @@ packages=(
     zsh
     fish
     htop
+    atop
     tmux
     ncdu
     ccache
