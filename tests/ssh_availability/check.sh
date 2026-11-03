@@ -35,6 +35,11 @@ grep -qx 'TasksMax=50%' "$scratch/user.slice"
 
 DESTINATION=$scratch/root
 STATE=$scratch/legacy
+etckeeper() {
+    [[ $1 == commit && $2 == -d && $3 == "$DESTINATION/etc" ]] || fail 'Incorrect etckeeper invocation'
+    [[ ${checkpoint_fails:-no} != yes ]] || return 1
+    printf '%s\n' "$4" >> "$scratch/checkpoints"
+}
 path=etc/systemd/system/user.slice.d/$NAME
 legacy=etc/systemd/system/ssh.service.d/$NAME
 mkdir -p "$DESTINATION/$(dirname "$path")" "$DESTINATION/$(dirname "$legacy")" "$STATE/installed/$(dirname "$legacy")"
@@ -46,10 +51,13 @@ printf '# manual edit\n' >> "$DESTINATION/$legacy"
 if (uninstall_policy) 2>/dev/null; then fail 'Modified legacy file removed'; fi
 [[ -e $DESTINATION/$path ]] || fail 'Failed removal partially deleted configuration'
 cp "$STATE/installed/$legacy" "$DESTINATION/$legacy"
+if (checkpoint_fails=yes uninstall_policy) 2>/dev/null; then fail 'Removal continued after checkpoint failure'; fi
+[[ -e $DESTINATION/$path && -e $DESTINATION/$legacy ]] || fail 'Checkpoint failure changed files'
 uninstall_policy
 uninstall_policy
 [[ ! -e $DESTINATION/$path && ! -e $DESTINATION/$legacy ]] || fail 'Owned files remain'
 [[ -f $STATE/manifest ]] || fail 'Legacy reference state was deleted'
+[[ $(cat "$scratch/checkpoints") == $'SSH resilience: before uninstall\nSSH resilience: after uninstall\nSSH resilience: before uninstall\nSSH resilience: after uninstall' ]] || fail 'Incorrect checkpoint order'
 
 # --- Optional native parser check on a Linux test environment ---
 

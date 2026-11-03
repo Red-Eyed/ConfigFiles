@@ -6,7 +6,8 @@ configuration database. Etckeeper remains the history of `/etc` changes.
 
 ## Install
 
-Requires Linux with systemd 255+, unified cgroup v2, and systemd-oomd installed.
+Requires Linux with systemd 255+, unified cgroup v2, systemd-oomd, and an
+initialized etckeeper repository. The apt installer already includes etckeeper.
 
 ```bash
 ./install -s install_ssh_resilience -- dry-run
@@ -26,6 +27,30 @@ reload may pick up resource changes earlier, so coordinate configuration work.
 SSH authentication, ports, daemon limits, OOM scores, and hardware watchdogs
 are unchanged. There is no automatic rollback timer. Console/BMC access is
 still the recovery path if the host cannot accept a login.
+
+## Etckeeper history
+
+Install and uninstall call `etckeeper commit` before and after changing files.
+The first checkpoint preserves any pending `/etc` edits; the second records the
+result. Dry-run makes no commits. Existing etckeeper hooks handle permissions
+and commit identity; this installer creates no separate backup database.
+
+Etckeeper commits **all** pending `/etc` changes, not just these drop-ins.
+If a checkpoint fails, the command stops. A failed final commit leaves the file
+changes available for inspection; it does not automatically restore anything.
+
+Review the changes with the existing CLI:
+
+```bash
+sudo etckeeper vcs log --oneline --grep='SSH resilience:'
+sudo etckeeper vcs show <commit> -- systemd/system/user.slice.d/90-ssh-availability.conf systemd/system/system.slice.d/90-ssh-availability.conf
+```
+
+Etckeeper creates no empty commits: if `/etc` was already clean, the existing
+HEAD is the before-checkpoint. The parent of the **after install** commit shows
+the preceding configuration. If you
+restore history, restore individual files, not the entire `/etc` tree. File
+history does not capture or restore running processes or live cgroup limits.
 
 ## What it does
 

@@ -88,6 +88,14 @@ preflight() {
 
 # --- Owned files and legacy removal ---
 
+# Preserve pending /etc edits before our changes, then record the result using
+# etckeeper's existing metadata hooks and configured commit identity.
+etc_checkpoint() {
+    command_exists etckeeper || die 'etckeeper is required for configuration checkpoints'
+    etckeeper commit -d "$DESTINATION/etc" "SSH resilience: $1" ||
+        die 'Etckeeper checkpoint failed; inspect /etc before continuing'
+}
+
 owned_file() {
     local file=$1
     [[ -f $DESTINATION/$file && ! -L $DESTINATION/$file ]] || return 1
@@ -110,7 +118,9 @@ uninstall_policy() {
         [[ -e $DESTINATION/$file || -L $DESTINATION/$file ]] || continue
         owned_file "$file" || die "Modified or unmanaged /$file; review it with etckeeper before removal"
     done < <(policy_paths)
+    etc_checkpoint 'before uninstall'
     while IFS= read -r file; do rm -f -- "$DESTINATION/$file"; done < <(policy_paths)
+    etc_checkpoint 'after uninstall'
     info 'Policy files removed. No live limits or services changed. Reboot if the old policy was already active.'
 }
 
@@ -167,9 +177,11 @@ main() {
     done
     SYSTEMD_UNIT_PATH="$stage:" systemd-analyze verify --man=no --recursive-errors=no "$stage/user.slice" "$stage/system.slice"
     if [[ ${1:-apply} == apply ]]; then
+        etc_checkpoint 'before install'
         for unit in user.slice system.slice; do
             install -D -m 644 "$stage/$unit" "$DESTINATION/etc/systemd/system/$unit.d/$NAME"
         done
+        etc_checkpoint 'after install'
         info 'Two slice drop-ins installed for the next reboot. SSH configuration is unchanged; no services were restarted.'
     fi
 }
