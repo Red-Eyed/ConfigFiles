@@ -17,6 +17,8 @@ sudo ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
 # Enable fstrim for SSD
 sudo systemctl enable fstrim.timer --now
 
+# An empty optional unit directory must not produce a literal wildcard path.
+shopt -s nullglob
 for unit in ./systemd_units/*; do
     sudo cp "$unit" /etc/systemd/system/
     sudo systemctl enable "$(basename "$unit")" --now
