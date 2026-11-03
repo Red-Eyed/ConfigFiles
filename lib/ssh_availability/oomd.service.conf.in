@@ -1,0 +1,8 @@
+# Keep the native memory-pressure recovery service responsive under user load.
+# Installed as a systemd-oomd.service drop-in; kill policy lives in user.slice.
+
+[Service]
+# Keep memory-pressure recovery off the CPUs saturated by ordinary workloads.
+AllowedCPUs=@SYSTEM_CPUS@
+# Favor survival of the recovery service during global kernel OOM.
+OOMScoreAdjust=-900

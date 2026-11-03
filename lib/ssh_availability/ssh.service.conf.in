@@ -1,0 +1,36 @@
+# Resource protection for the discovered OpenSSH system service.
+# Installed under its canonical unit name; PAM moves user sessions out of this
+# service's cgroup, so user.slice provides the aggregate post-login limits.
+
+[Service]
+# --- CPU placement and I/O priority ---
+
+# Run the daemon and authentication work on cores excluded from ordinary users.
+AllowedCPUs=@SYSTEM_CPUS@
+# Favor SSH over other services competing on the reserved CPUs.
+CPUWeight=1000
+# Favor authentication I/O where weighted block scheduling is supported.
+IOWeight=1000
+
+# --- Kernel OOM and memory reclaim preference ---
+
+# Reduce global kernel OOM preference; children may inherit this negative score.
+OOMScoreAdjust=-900
+# Enable measurement needed for the daemon's reclaim preference.
+MemoryAccounting=yes
+# Prefer reclaim elsewhere; this is neither preallocation nor an absolute reserve.
+MemoryLow=256M
+
+# --- Daemon-side process and file descriptor limits ---
+
+# Bound daemon-side threads and processes before PAM moves sessions to user.slice.
+TasksMax=4096
+# Preserve the conventional soft FD limit while allowing applications to raise it.
+LimitNOFILE=1024:524288
+
+# --- Daemon failure recovery ---
+
+# Recover from daemon failure without treating a failed connection as failure.
+Restart=on-failure
+# Avoid a tight restart loop when a persistent error prevents startup.
+RestartSec=2s

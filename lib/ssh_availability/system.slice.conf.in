@@ -1,0 +1,8 @@
+# Favor essential system services over ordinary users on shared host resources.
+# Installed as a system.slice drop-in; these relative weights are best-effort.
+
+[Slice]
+# Favor system services when CPU time is shared with the user slice.
+CPUWeight=1000
+# Favor system I/O where the block scheduler supports cgroup weights.
+IOWeight=1000

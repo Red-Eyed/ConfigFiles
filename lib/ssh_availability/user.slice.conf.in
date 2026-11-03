@@ -1,0 +1,45 @@
+# Aggregate resource policy for ordinary user sessions and their descendants.
+# Installed as a user.slice drop-in; login shells share these workload limits.
+
+[Unit]
+# Start native pressure recovery when the user slice is started.
+Wants=systemd-oomd.service
+
+[Slice]
+# --- CPU placement and scheduling ---
+
+# Exclude the reserved physical cores and all their SMT siblings from user work.
+AllowedCPUs=@WORKLOAD_CPUS@
+# Share contested workload CPUs at a lower weight than system services.
+CPUWeight=100
+
+# --- RAM and swap headroom ---
+
+# Make aggregate user memory use visible to systemd and oomd.
+MemoryAccounting=yes
+# Begin reclaim and allocation throttling before the hard memory ceiling.
+MemoryHigh=@MEMORY_HIGH@%
+# Trigger cgroup-local OOM handling rather than consume system memory headroom.
+MemoryMax=@MEMORY_MAX@%
+# Bound aggregate user swap consumption without creating or resizing swap.
+MemorySwapMax=@SWAP_MAX@
+
+# --- Task capacity and I/O scheduling ---
+
+# Count threads as well as processes across all user descendants.
+TasksAccounting=yes
+# Leave host task capacity outside user.slice; a full slice can still block logins.
+TasksMax=@TASKS_MAX@
+# Expose block I/O use to the cgroup controller.
+IOAccounting=yes
+# Deprioritize user I/O where the storage stack supports weighted scheduling.
+IOWeight=10
+
+# --- Proactive memory-pressure recovery ---
+
+# Let oomd kill eligible user descendants during sustained memory stalls.
+ManagedOOMMemoryPressure=kill
+# Set the fraction of stalled time that triggers oomd pressure evaluation.
+ManagedOOMMemoryPressureLimit=@PRESSURE@%
+# Let global swap pressure select eligible user descendants for termination.
+ManagedOOMSwap=kill

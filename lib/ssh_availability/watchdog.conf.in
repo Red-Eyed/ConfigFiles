@@ -1,0 +1,7 @@
+# Optional last-resort recovery when the system manager stops servicing a watchdog.
+# Installed as a system.conf.d drop-in only when explicitly requested; activation
+# requires reboot and operator verification of the watchdog device and timeout.
+
+[Manager]
+# Reboot if PID 1 stops servicing the watchdog; this does not test SSH health.
+RuntimeWatchdogSec=@WATCHDOG_SEC@s

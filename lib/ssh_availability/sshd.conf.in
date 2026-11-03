@@ -1,0 +1,8 @@
+# Bound unauthenticated connection occupancy in the existing OpenSSH include tree.
+# Installed as an sshd_config.d snippet and read when the daemon next starts.
+# Authentication methods, users, keys, ports, and forwarding are unchanged.
+
+# Release unauthenticated connections that exceed the authentication deadline.
+LoginGraceTime @LOGIN_GRACE@
+# Bound pre-authentication occupancy with probabilistic then complete rejection.
+MaxStartups @MAX_STARTUPS@
