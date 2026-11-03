@@ -1,3 +1,4 @@
+# Managed by ConfigFiles SSH resilience.
 # Favor essential system services over ordinary users on shared host resources.
 # Installed as a system.slice drop-in; these relative weights are best-effort.
 

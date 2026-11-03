@@ -1,3 +1,4 @@
+# Managed by ConfigFiles SSH resilience.
 # Aggregate resource policy for ordinary user sessions and their descendants.
 # Installed as a user.slice drop-in; login shells share these workload limits.
 
@@ -8,8 +9,12 @@ Wants=systemd-oomd.service
 [Slice]
 # --- CPU placement and scheduling ---
 
+# Clear accumulated CPU assignments before setting the workload partition.
+AllowedCPUs=
 # Exclude the reserved physical cores and all their SMT siblings from user work.
 AllowedCPUs=@WORKLOAD_CPUS@
+# Use that same partition during boot and shutdown.
+StartupAllowedCPUs=
 # Share contested workload CPUs at a lower weight than system services.
 CPUWeight=100
 
@@ -29,7 +34,7 @@ MemorySwapMax=@SWAP_MAX@
 # Count threads as well as processes across all user descendants.
 TasksAccounting=yes
 # Leave host task capacity outside user.slice; a full slice can still block logins.
-TasksMax=@TASKS_MAX@
+TasksMax=@TASKS_PERCENT@%
 # Expose block I/O use to the cgroup controller.
 IOAccounting=yes
 # Deprioritize user I/O where the storage stack supports weighted scheduling.

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Explicit installer entry for SSH availability protection; omitted from install_all.
 # Forward only documented policy parameters through sudo. The underlying utility
-# stages files for reboot and never restarts SSH or activates live resource limits.
+# apply stages drop-ins for reboot without restarting SSH or changing live limits.
 
 set -euo pipefail
 cd "$(dirname "$(readlink -f "$0")")" || exit
@@ -11,9 +11,9 @@ cd "$(dirname "$(readlink -f "$0")")" || exit
 # --- Action selection ---
 
 action=${1:-apply}
-[[ $# -le 1 ]] || die 'Usage: ./install -s install_ssh_resilience -- [apply|dry-run|diagnose|rollback|remove-obsolete]'
+[[ $# -le 1 ]] || die 'Usage: ./install -s install_ssh_resilience -- [apply|dry-run|diagnose|uninstall|remove-obsolete]'
 case $action in
-    apply|dry-run|diagnose|rollback|remove-obsolete|--help|-h) ;;
+    apply|dry-run|diagnose|uninstall|rollback|remove-obsolete|--help|-h) ;;
     *) die "Unknown SSH resilience action: $action" ;;
 esac
 command=(bash "$PWD/ssh_availability.sh" "$action")
@@ -25,7 +25,6 @@ fi
 
 parameters=(
     RESERVE_CORES MEMORY_HIGH MEMORY_MAX SWAP_PERCENT TASKS_PERCENT PRESSURE
-    LOGIN_GRACE MAX_STARTUPS WATCHDOG_SEC SSH_SERVICE SSHD_BINARY SSHD_CONFIG
 )
 settings=()
 for parameter in "${parameters[@]}"; do

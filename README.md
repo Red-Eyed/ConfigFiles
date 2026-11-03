@@ -40,7 +40,7 @@ Preview, inspect, or uninstall it with an explicit action after `--`:
 ```bash
 ./install -s install_ssh_resilience -- dry-run
 ./install -s install_ssh_resilience -- diagnose
-./install -s install_ssh_resilience -- rollback
+./install -s install_ssh_resilience -- uninstall
 ```
 
 Pass configurable settings through the environment; the wrapper forwards these
@@ -49,4 +49,8 @@ settings through sudo:
 ```bash
 RESERVE_CORES=2 MEMORY_HIGH=75 MEMORY_MAX=85 ./install -s install_ssh_resilience -- dry-run
 ```
+
+This installs two systemd slice drop-ins only; it does not change SSH settings.
+If you installed the previous version, run `-- uninstall` first. If that policy
+was already active, reboot after removal before installing the new version.
 
