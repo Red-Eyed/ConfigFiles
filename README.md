@@ -12,7 +12,7 @@ The launcher requires only Python 3 and defaults to headless installation on
 servers. Select a script with `-s`; pass its arguments after `--`:
 
 ```bash
-./install -s install_ssh_resilience -- diagnose
+./install -s install_earlyoom -- diagnose
 ```
 
 For Docker/Podman builds running as root, explicitly enable the bundled sudo shim:
@@ -25,32 +25,29 @@ The Python launcher lives in `installer/`: `cli.py` parses arguments,
 `scripts.py` discovers shell installers, and `runner.py` manages execution.
 Run its isolated tests with `uv run --with pytest pytest installer/tests`.
 
-For opt-in SSH resource protection on Linux servers with systemd 255+ and cgroup v2, see
-[SSH availability deployment and diagnostics](docs/ssh-availability.md).
-This policy is not part of the default installer.
-
-Install SSH resilience explicitly (requests sudo and stages configuration for reboot):
+Configure earlyoom for Python multiprocessing workloads:
 
 ```bash
-./install -s install_ssh_resilience
+./install -s install_earlyoom
 ```
 
 Preview, inspect, or uninstall it with an explicit action after `--`:
 
 ```bash
-./install -s install_ssh_resilience -- dry-run
-./install -s install_ssh_resilience -- diagnose
-./install -s install_ssh_resilience -- uninstall
+./install -s install_earlyoom -- dry-run
+./install -s install_earlyoom -- diagnose
+./install -s install_earlyoom -- uninstall
 ```
 
 Pass configurable settings through the environment; the wrapper forwards these
 settings through sudo:
 
 ```bash
-RESERVE_CORES=2 MEMORY_HIGH=75 MEMORY_MAX=85 ./install -s install_ssh_resilience -- dry-run
+EARLYOOM_TERM=20 EARLYOOM_KILL=15 ./install -s install_earlyoom
 ```
 
-This installs two systemd slice drop-ins only; it does not change SSH settings.
-If you installed the previous version, run `-- uninstall` first. If that policy
-was already active, reboot after removal before installing the new version.
+This starts earlyoom with process-group killing and RAM-based thresholds.
+No custom slice limits or SSH restart.
+`install_ssh_resilience` remains an alias and removes its old owned drop-ins.
+See [earlyoom setup and migration](docs/earlyoom.md).
 

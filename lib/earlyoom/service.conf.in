@@ -1,0 +1,9 @@
+# Managed by ConfigFiles earlyoom.
+# Kill the selected process group, including Python workers sharing its PGID.
+[Service]
+# Wait for the daemon executable to start before systemctl reports success.
+Type=exec
+# Replace the vendor command while preserving its service sandbox and privileges.
+ExecStart=
+# TERM/KILL depend on available RAM; free swap does not delay either signal.
+ExecStart=@EARLYOOM_BINARY@ -m @EARLYOOM_TERM@,@EARLYOOM_KILL@ -s 100,100 -g -r 3600
