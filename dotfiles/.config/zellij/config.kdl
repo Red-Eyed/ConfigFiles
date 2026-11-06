@@ -358,7 +358,8 @@ pane_frames false
 // Valid values: positive integers
 // Default value: 10000
 //
-// scroll_buffer_size 10000
+// About 1 GB of text per pane at 100 bytes per line; RAM usage is higher.
+scroll_buffer_size 10000000
 
 // Provide a command to execute when copying text. The text will be piped to
 // the stdin of the program to perform the copy. This can be used with
